@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:43:17 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/20 14:59:30 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/09/24 21:03:16 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	ft_find_player_position(t_game *game)
 				game->player.x = game->square_x + SQUARE_SIZE / 2;
 				game->player.y = game->square_y + SQUARE_SIZE / 2;
 			}
-			game->square_x += SQUARE_SIZE + 1;
+			game->square_x += SQUARE_SIZE;
 			x++;
 		}
 		y++;
-		game->square_y += SQUARE_SIZE + 1;
+		game->square_y += SQUARE_SIZE;
 	}
 }
 void    ft_player_angle(t_game *game)

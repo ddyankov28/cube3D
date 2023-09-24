@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/21 13:54:14 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/09/24 20:59:23 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define GREY 0xA0A0A0
 
 // 2Dmap player square attributes
-# define PLAYER_SIZE 1
+# define PLAYER_SIZE 2
 
 // 2Dmap wall or empty attributes
 # define SQUARE_SIZE 32
@@ -83,7 +83,6 @@ typedef struct s_game
     t_player player;
     t_img   img;
     t_moves moves;
-    int     stop;
 }       t_game;
 
 void	ft_draw_circle(t_game *game);
@@ -98,9 +97,7 @@ void	ft_get_map(t_game *game, char *map_name);
 void    ft_draw_background(t_game *game);
 void	ft_draw_2d_map(t_game *game);
 void	ft_draw_square(t_game *game, int color);
-void	ft_draw_player(t_game *game);
-int     img_pix_put(t_game *game, int x, int y, int color);
-void	ft_draw_line(t_game *game, int x1, int y1, int x2, int y2);
+void     img_pix_put(t_game *game, int x, int y, int color);
 void    ft_find_player_position(t_game *game);
 void    ft_player_angle(t_game *game);
 

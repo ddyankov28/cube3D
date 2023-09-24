@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:55:34 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/21 12:03:59 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/09/24 21:01:40 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void    ft_init(t_game *game)
 	game->player.y = 0;
     game->mlx = mlx_init();
     game->map = malloc(10000);
-    game->stop = 0;
-    
 }
 
 void    ft_events_init(t_game *game)
