@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:50:45 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/24 21:04:40 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/09/25 16:02:42 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,15 @@ void	ft_draw_2d_map(t_game *game)
 			else if (game->map[y][x] == '0')
 				ft_draw_square(game, RED);
 			else if (game->map[y][x] == 'E' || game->map[y][x] == 'N' || game->map[y][x] == 'W' || game->map[y][x] == 'S')
-				ft_draw_square(game, BLACK);
-			game->square_x += SQUARE_SIZE - 1;
+				ft_draw_square(game, RED);
+			game->square_x += SQUARE_SIZE;
 			x++;
 		}
 		y++;
 		game->square_y += SQUARE_SIZE;
 	}
 }
+
 void	ft_draw_circle(t_game *game)
 {
 	float i, angle, x1, y1;
@@ -43,14 +44,14 @@ void	ft_draw_circle(t_game *game)
 	{
 		angle = i;
 		x1 = PLAYER_SIZE * cos(angle * PI / 180);
-      	y1 = PLAYER_SIZE * sin(angle * PI / 180);
+        y1 = PLAYER_SIZE * sin(angle * PI / 180);
 		img_pix_put(game, game->player.x + x1, game->player.y + y1, GREEN);
 	}
 }
 void	ft_draw_square(t_game *game, int color)
 {
-	int x = 0;
-	int y;
+	int x = -1;
+	int y = 0;
 	
 	while (++x < SQUARE_SIZE)
 	{
@@ -60,18 +61,41 @@ void	ft_draw_square(t_game *game, int color)
 	}
 
 }
+
 void    ft_draw_background(t_game *game)
 {
-    int	i;
-    int	j;
+    int	i = -1;
+    int	j = 0;
 
-    i = -1;
     while (++i < game->screen_height)
     {
         j = -1;
         while (++j < game->screen_width)
-	   	img_pix_put(game, j, i, GREY);
+            img_pix_put(game, j, i, GREY);
     }
+}
+
+void	ft_draw_line(t_game *game, int begin_x, int begin_y, int end_x, int end_y, int color)
+{
+	double deltaX = end_x - begin_x;
+	double deltaY = end_y - begin_y;
+
+	int pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
+	deltaX /= pixels;
+	deltaY /= pixels;
+	double pixelX = begin_x;
+	double pixelY = begin_y;
+	while (pixels)
+	{
+    		img_pix_put(game, pixelX, pixelY, color);
+    		pixelX += deltaX;
+    		pixelY += deltaY;
+    		--pixels;
+	}
+}
+float	ft_dist(float ax, float ay, float bx, float by, float ang)
+{
+	return (sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay)));
 }
 
 void	img_pix_put(t_game *game, int x, int y, int color)

@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:56:42 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/21 13:50:28 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/09/22 13:32:15 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool    ft_player_in_bounds(t_game *game)
 {
-    if (game->player.x < 0 || game->player.y < 0 || game->player.x > game->screen_width || game->player.y > game->screen_height)
+    if (game->player.x < 0 || game->player.y < 0 || game->player.x > SQUARE_SIZE * game->width || game->player.y > SQUARE_SIZE * game->height)
         return false;
     return true;
 }

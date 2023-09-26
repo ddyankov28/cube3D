@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:49:32 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/24 21:15:02 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/09/26 09:23:23 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,44 +17,23 @@ int	ft_close_x()
 	exit(0);
 }
 
-void	draw_line(t_game *game, int beginX, int beginY, int endX, int endY)
-{
-	double deltaX = endX - beginX;
-	double deltaY = endY - beginY;
-
-	int pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
-	deltaX /= pixels;
-	deltaY /= pixels;
-	double pixelX = beginX;
-	double pixelY = beginY;
-	while (pixels)
-	{
-    		img_pix_put(game, pixelX, pixelY, GREEN);
-    		pixelX += deltaX;
-    		pixelY += deltaY;
-    		--pixels;
-	}
-}
-
 int	render(t_game *game)
 {
 	ft_draw_background(game);
 	ft_draw_2d_map(game);
+	rays(game);
 	ft_draw_circle(game);
-	draw_line(game, game->player.x, game->player.y, game->player.x + game->player.delta_x, game->player.y + game->player.delta_y);
+	//ft_draw_line(game, game->player.x, game->player.y, game->player.x + game->player.delta_x * 5, game->player.y + game->player.delta_y * 5, BLACK);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.mlx_img, 0, 0);
 	return 0;
 }
 
 void	print_map(t_game *game)
 {
-	printf("Converted Integer Array:\n");
-    for (int i = 0; i < game->height; i++) {
-        for (int j = 0; j < game->width; j++) {
-            printf("%c ", game->map[i][j]);
-        }
-        printf("\n");
-    }
+    int i = 0;
+	while ( i < game->width * game->height)
+		printf("%d ", game->imap[i++]);
+    printf("\n");
 	printf("MAP WIDTH %d\nMAP HEIGHT %d\n", game->width, game->height);
 }
 
@@ -65,14 +44,19 @@ int	main()
 	
 	ft_init(&game);
 	ft_events_init(&game);
+	ft_rays_init(&game);
 	ft_get_map(&game, "map.txt");
+	ft_convert_map(&game);
 	ft_find_player_position(&game);
 	ft_player_angle(&game);
 	mlx_get_screen_size(game.mlx, &game.screen_width, &game.screen_height);
+	printf("SCREEN-WIDTH = %d\n", game.screen_width);
+	printf("SCREEN-HEIGHT = %d\n", game.screen_height);
 	game.win = mlx_new_window(game.mlx, game.screen_width, game.screen_height, "cub3D");
 	game.player.delta_x = cos(game.player.angle) * 5;
-     game.player.delta_y = sin(game.player.angle) * 5;
+    game.player.delta_y = sin(game.player.angle) * 5;
 	print_map(&game);
+	printf("%d\n", game.height * game.width);
 	game.img.mlx_img = mlx_new_image(game.mlx, game.screen_width, game.screen_height);
 	game.img.addr = mlx_get_data_addr(game.img.mlx_img, &game.img.bpp,
 			&game.img.line_len, &game.img.endian);

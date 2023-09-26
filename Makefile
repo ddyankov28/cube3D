@@ -6,7 +6,7 @@
 #    By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 16:44:47 by ddyankov          #+#    #+#              #
-#    Updated: 2023/09/21 10:43:07 by ddyankov         ###   ########.fr        #
+#    Updated: 2023/09/25 10:28:18 by ddyankov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,11 @@ COLOUR_END = \033[0m
 
 NAME = cub3D
 
-SRC = main.c init.c move.c render.c get_map.c player.c key_events.c
+SRC = main.c init.c move.c render.c get_map.c player.c key_events.c rays.c
 
 OBJ = $(patsubst %.c, obj/%.o, $(SRC))
 
-CFLAGS = -Wall -Werror -Wextra -g -MMD -MP
+CFLAGS = -g -MMD -MP
 
 MLXFLAGS  = -I ./mlx -L ./mlx -lmlx -lXext -lX11 -lm
 

@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:03:33 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/20 14:48:56 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/09/22 12:37:08 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,21 @@ void	ft_get_map(t_game *game, char *map_name)
 	game->width = ft_strlen(game->map[0]) - 1;
 	close (fd);
 }
-
+void	ft_convert_map(t_game *game)
+{
+	game->imap = (int *)malloc((game->width * game->height) * sizeof(int));
+	int i = 0;
+	int j = 0;
+	int ind = 0;
+	while (i < game->height)
+	{
+		j = 0;
+		while (j < game->width)
+		{
+			game->imap[ind] = game->map[i][j] - '0';
+			ind++;
+			j++;
+		}
+		i++;
+	}
+}
