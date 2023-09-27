@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:50:45 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/25 16:02:42 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/09/27 10:22:14 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,98 +14,117 @@
 
 void	ft_draw_2d_map(t_game *game)
 {
-	int x, y = 0;
+	int	x;
+	int	y;
+
+	y = -1;
 	game->square_x = 0;
 	game->square_y = 0;
-	while (y < game->height)
+	while (++y < game->height)
 	{
 		game->square_x = 0;
-		x = 0;
-		while (x < game->width)
+		x = -1;
+		while (++x < game->width)
 		{
 			if (game->map[y][x] == '1')
-				ft_draw_square(game, BLUE);	
+				ft_draw_square(game, BLUE);
 			else if (game->map[y][x] == '0')
 				ft_draw_square(game, RED);
-			else if (game->map[y][x] == 'E' || game->map[y][x] == 'N' || game->map[y][x] == 'W' || game->map[y][x] == 'S')
+			else if (game->map[y][x] == 'E' || game->map[y][x] == 'N'
+					|| game->map[y][x] == 'W' || game->map[y][x] == 'S')
 				ft_draw_square(game, RED);
 			game->square_x += SQUARE_SIZE;
-			x++;
 		}
-		y++;
 		game->square_y += SQUARE_SIZE;
 	}
 }
 
 void	ft_draw_circle(t_game *game)
 {
-	float i, angle, x1, y1;
-	for (i = 0; i < 360; i += 0.1)
+	float	i;
+	float	angle;
+	float	x1;
+	float	y1;
+
+	i = 0;
+	while (i < 360)
 	{
 		angle = i;
 		x1 = PLAYER_SIZE * cos(angle * PI / 180);
-        y1 = PLAYER_SIZE * sin(angle * PI / 180);
+		y1 = PLAYER_SIZE * sin(angle * PI / 180);
 		img_pix_put(game, game->player.x + x1, game->player.y + y1, GREEN);
+		i += 0.1;
 	}
 }
+
 void	ft_draw_square(t_game *game, int color)
 {
-	int x = -1;
-	int y = 0;
-	
+	int	x;
+	int	y;
+
+	x = -1;
+	y = 0;
 	while (++x < SQUARE_SIZE)
 	{
 		y = -1;
 		while (++y < SQUARE_SIZE)
-			img_pix_put(game, game->square_x + x, game->square_y + y , color);
+			img_pix_put(game, game->square_x + x, game->square_y + y, color);
 	}
-
 }
 
-void    ft_draw_background(t_game *game)
+void	ft_draw_background(t_game *game)
 {
-    int	i = -1;
-    int	j = 0;
+	int	i;
+	int	j;
 
-    while (++i < game->screen_height)
-    {
-        j = -1;
-        while (++j < game->screen_width)
-            img_pix_put(game, j, i, GREY);
-    }
+	i = -1;
+	j = 0;
+	while (++i < game->screen_height)
+	{
+		j = -1;
+		while (++j < game->screen_width)
+			img_pix_put(game, j, i, GREY);
+	}
 }
 
-void	ft_draw_line(t_game *game, int begin_x, int begin_y, int end_x, int end_y, int color)
+void	ft_draw_line(t_game *game, int begin_x, int begin_y, int end_x,
+		int end_y, int color)
 {
-	double deltaX = end_x - begin_x;
-	double deltaY = end_y - begin_y;
+	double	delta_x;
+	double	delta_y;
+	int		pixels;
+	double	pixel_x;
+	double	pixel_y;
 
-	int pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
-	deltaX /= pixels;
-	deltaY /= pixels;
-	double pixelX = begin_x;
-	double pixelY = begin_y;
+	delta_x = end_x - begin_x;
+	delta_y = end_y - begin_y;
+	pixels = sqrt((delta_x * delta_x) + (delta_y * delta_y));
+	delta_x /= pixels;
+	delta_y /= pixels;
+	pixel_x = begin_x;
+	pixel_y = begin_y;
 	while (pixels)
 	{
-    		img_pix_put(game, pixelX, pixelY, color);
-    		pixelX += deltaX;
-    		pixelY += deltaY;
-    		--pixels;
+		img_pix_put(game, pixel_x, pixel_y, color);
+		pixel_x += delta_x;
+		pixel_y += delta_y;
+		--pixels;
 	}
 }
-float	ft_dist(float ax, float ay, float bx, float by, float ang)
+
+float	ft_dist(float ax, float ay, float bx, float by)
 {
 	return (sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay)));
 }
 
 void	img_pix_put(t_game *game, int x, int y, int color)
 {
-	
 	char	*pixel;
-	
-	if (x >= 0 && x <  game->screen_width && y >= 0 && y < game->screen_height)
+
+	if (x >= 0 && x < game->screen_width && y >= 0 && y < game->screen_height)
 	{
-		pixel = game->img.addr + (y * game->img.line_len + x * (game->img.bpp / 8));
+		pixel = game->img.addr + (y * game->img.line_len + x * (game->img.bpp
+					/ 8));
 		*(int *)pixel = color;
 	}
 }

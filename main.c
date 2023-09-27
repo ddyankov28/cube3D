@@ -6,13 +6,13 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:49:32 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/26 09:23:23 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/09/27 10:10:18 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-int	ft_close_x()
+int	ft_close_x(void)
 {
 	exit(0);
 }
@@ -21,27 +21,16 @@ int	render(t_game *game)
 {
 	ft_draw_background(game);
 	ft_draw_2d_map(game);
-	rays(game);
 	ft_draw_circle(game);
-	//ft_draw_line(game, game->player.x, game->player.y, game->player.x + game->player.delta_x * 5, game->player.y + game->player.delta_y * 5, BLACK);
+	rays(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.mlx_img, 0, 0);
-	return 0;
+	return (0);
 }
 
-void	print_map(t_game *game)
-{
-    int i = 0;
-	while ( i < game->width * game->height)
-		printf("%d ", game->imap[i++]);
-    printf("\n");
-	printf("MAP WIDTH %d\nMAP HEIGHT %d\n", game->width, game->height);
-}
-
-
-int	main()
+int	main(void)
 {
 	t_game	game;
-	
+
 	ft_init(&game);
 	ft_events_init(&game);
 	ft_rays_init(&game);
@@ -49,17 +38,7 @@ int	main()
 	ft_convert_map(&game);
 	ft_find_player_position(&game);
 	ft_player_angle(&game);
-	mlx_get_screen_size(game.mlx, &game.screen_width, &game.screen_height);
-	printf("SCREEN-WIDTH = %d\n", game.screen_width);
-	printf("SCREEN-HEIGHT = %d\n", game.screen_height);
-	game.win = mlx_new_window(game.mlx, game.screen_width, game.screen_height, "cub3D");
-	game.player.delta_x = cos(game.player.angle) * 5;
-    game.player.delta_y = sin(game.player.angle) * 5;
-	print_map(&game);
-	printf("%d\n", game.height * game.width);
-	game.img.mlx_img = mlx_new_image(game.mlx, game.screen_width, game.screen_height);
-	game.img.addr = mlx_get_data_addr(game.img.mlx_img, &game.img.bpp,
-			&game.img.line_len, &game.img.endian);
+	ft_mlx_init(&game);
 	mlx_loop_hook(game.mlx, render, &game);
 	mlx_hook(game.win, 2, 1L << 0, ft_key_press, &game);
 	mlx_hook(game.win, 3, 1L << 1, ft_key_release, &game);
