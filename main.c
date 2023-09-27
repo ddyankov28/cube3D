@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:49:32 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/27 10:10:18 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/09/27 12:38:12 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	render(t_game *game)
 	return (0);
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_game	game;
 
@@ -45,8 +45,8 @@ int	main(void)
 	ft_events_init(&game);
 	game.file_name = ft_strdup(av[1]);
 	ft_rays_init(&game);
-	ft_get_map(&game, "map.txt");
-	//ft_handle_input(&game);
+	//ft_get_map(&game, "map.txt");
+	ft_handle_input(&game);
 	ft_convert_map(&game);
 	ft_find_player_position(&game);
 	ft_player_angle(&game);

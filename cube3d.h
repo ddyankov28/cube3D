@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/27 10:02:40 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/09/27 12:38:59 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ typedef struct s_game
 	char		*tmp_string;
 	int			index;
 	int			all_done;
-	int			rows;
 	t_player	player;
 	t_img		img;
 	t_moves		moves;
@@ -146,7 +145,6 @@ void			ft_rays_init(t_game *game);
 void			ft_mlx_init(t_game *game);
 
 //map
-void			ft_get_map(t_game *game, char *map_name);
 void			ft_convert_map(t_game *game);
 
 //render

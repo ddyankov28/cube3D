@@ -6,13 +6,13 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:03:33 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/26 13:42:47 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/09/27 12:38:41 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	ft_get_map(t_game *game, char *map_name)
+/*void	ft_get_map(t_game *game, char *map_name)
 {
 	int	fd;
 	int	i;
@@ -34,7 +34,7 @@ void	ft_get_map(t_game *game, char *map_name)
 	}
 	game->width = ft_strlen(game->map[0]) - 1;
 	close(fd);
-}
+}*/
 
 void	ft_convert_map(t_game *game)
 {

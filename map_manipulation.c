@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_manipulation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:53:08 by vstockma          #+#    #+#             */
-/*   Updated: 2023/09/25 16:55:58 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/09/27 12:39:43 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_insert_x(t_game *game, int i)
 				if (game->map[i][j] != '1')
 					game->map[i][j] = 'x';
 			}
-			if (i == game->rows - 1)
+			if (i == game->height - 1)
 			{
 				if (game->map[i][j] != '1')
 					game->map[i][j] = 'x';

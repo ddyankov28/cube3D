@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_walls.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:52:45 by vstockma          #+#    #+#             */
-/*   Updated: 2023/09/27 10:39:11 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/09/27 12:39:15 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	ft_check_top_row(t_game *game, int i, int j)
 
 static int	ft_check_last_row(t_game *game, int i, int j)
 {
-	if (i == game->rows - 1 && j == 0)
+	if (i == game->height - 1 && j == 0)
 	{
 		if ((game->map[i][j + 1] != 'x' && game->map[i][j + 1] != '1'
 				&& game->map[i][j + 1] != '\0'))
@@ -48,7 +48,7 @@ static int	ft_check_last_row(t_game *game, int i, int j)
 				return (1);
 		}
 	}
-	else if (i == game->rows - 1)
+	else if (i == game->height - 1)
 	{
 		if ((game->map[i][j + 1] != 'x' && game->map[i][j + 1] != '1'
 				&& game->map[i][j + 1] != '\0') || (game->map[i][j - 1] != 'x'
@@ -89,7 +89,7 @@ static int	ft_check_x_surroundings(t_game *game, int i, int j)
 		if (ft_check_top_row(game, i, j) == 1)
 			return (1);
 	}
-	else if (i == game->rows - 1)
+	else if (i == game->height - 1)
 	{
 		if (ft_check_last_row(game, i, j) == 1)
 			return (1);

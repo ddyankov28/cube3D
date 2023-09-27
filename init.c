@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:55:34 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/27 10:17:09 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/09/27 12:38:52 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_init(t_game *game)
 	game->img.ceiling_color = NULL;
 	game->index = 0;
 	game->all_done = 0;
-	game->rows = 0;
+
 }
 
 void	ft_events_init(t_game *game)

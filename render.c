@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:50:45 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/27 10:22:14 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/09/27 12:49:13 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,17 @@ void	ft_draw_background(t_game *game)
 {
 	int	i;
 	int	j;
-
+	int	color;
+	
 	i = -1;
-	j = 0;
+	color = WEISS * 4;
 	while (++i < game->screen_height)
 	{
 		j = -1;
+		if (color == WEISS * 4 && i >= game->screen_height / 2)
+			color = RED;
 		while (++j < game->screen_width)
-			img_pix_put(game, j, i, GREY);
+			img_pix_put(game, j, i, color);
 	}
 }
 

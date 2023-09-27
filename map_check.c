@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:43 by valentin          #+#    #+#             */
-/*   Updated: 2023/09/27 11:23:48 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/09/27 12:42:13 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	ft_check_map(t_game *game)
 	int	j;
 
 	i = 0;
+	game->width = ft_strlen(game->map[i]);
 	while (game->map[i])
 	{
 		j = 0;
@@ -67,7 +68,7 @@ int	ft_check_map(t_game *game)
 				ft_free_map_error(game, 3);
 			j++;
 		}
-		game->rows++;
+		game->height++;
 		i++;
 	}
 	ft_change_map(game);
