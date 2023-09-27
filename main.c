@@ -31,10 +31,22 @@ int	main(void)
 {
 	t_game	game;
 
+	if (ac != 2)
+	{
+		printf("Not enough arguments!\n");
+		return (1);
+	}
+	if (ft_checkfile(av[1]) == 1)
+	{
+		ft_printf("Error\nWrong file format!\n");
+		return (1);
+	}
 	ft_init(&game);
 	ft_events_init(&game);
+	game.file_name = ft_strdup(av[1]);
 	ft_rays_init(&game);
 	ft_get_map(&game, "map.txt");
+	//ft_handle_input(&game);
 	ft_convert_map(&game);
 	ft_find_player_position(&game);
 	ft_player_angle(&game);
