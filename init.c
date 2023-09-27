@@ -28,6 +28,16 @@ void	ft_init(t_game *game)
 	game->scene.start_draw = 0;
 	game->scene.cos_angle = 0;
 	game->scene.line_offset = 0;
+	game->lines = 0;
+	game->img.no_texture = NULL;
+	game->img.so_texture = NULL;
+	game->img.we_texture = NULL;
+	game->img.ea_texture = NULL;
+	game->img.floor_color = NULL;
+	game->img.ceiling_color = NULL;
+	game->index = 0;
+	game->all_done = 0;
+	game->rows = 0;
 }
 
 void	ft_events_init(t_game *game)
