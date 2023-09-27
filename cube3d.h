@@ -51,6 +51,12 @@ typedef struct s_img
 	int			bpp;
 	int			line_len;
 	int			endian;
+	char		*no_texture;
+	char		*ea_texture;
+	char		*so_texture;
+	char		*we_texture;
+	char		*floor_color;
+	char		*ceiling_color;
 }				t_img;
 
 typedef struct s_player
@@ -116,6 +122,13 @@ typedef struct s_game
 	int			square_x;
 	int			square_y;
 	int			square_size;
+	char		*file_name;
+	char		**content;
+	int			lines;
+	char		*tmp_string;
+	int			index;
+	int			all_done;
+	int			rows;
 	t_player	player;
 	t_img		img;
 	t_moves		moves;
@@ -163,6 +176,43 @@ void			ft_rotate_right(t_game *game);
 void			ft_rotate_left(t_game *game);
 
 int				render(t_game *game);
+
+//main_utils.c
+int				ft_handle_input(t_game *game);
+int				ft_linecount(int fd);
+
+//map_check_walls.c
+int				ft_check_walls(t_game *game);
+
+//map_check.c
+int				ft_get_player_position(t_game *game);
+int				ft_check_map(t_game *game);
+int				ft_checkfile(char *str);
+int				ft_get_map(t_game *game, int i);
+
+
+//map_manipulation.c
+int				ft_change_map(t_game *game);
+
+//input_check_colors.c
+int				ft_strncmp_colors(t_game *game, char *s1, const char *s2,
+					size_t n);
+int				ft_check_colors(t_game *game);
+
+//input_check_textures.c
+int				ft_strncmp_textures(t_game *game, char *s1, const char *s2,
+					size_t n);
+int				ft_check_textures(t_game *game);
+
+//input_receiving.c
+int				ft_get_file_content(t_game *game);
+
+//free.c
+void			ft_free_content(t_game *game);
+void			ft_free_colors_textures_error(t_game *game, char *tmp,
+					int i);
+void			ft_free_map_error(t_game *game, int i);
+void			ft_free_game(t_game *game);
 
 bool			ft_player_in_bounds(t_game *game);
 #endif
