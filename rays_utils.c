@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 15:16:35 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/27 12:48:51 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/09/27 13:14:39 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_draw_3d_scene(t_game *game)
 	{
 		ft_draw_line(game, game->scene.start_draw + x, game->scene.line_offset,
 			game->scene.start_draw + x, game->scene.line_height
-			+ game->scene.line_offset, GREEN);
+			+ game->scene.line_offset, BLACK);
 		x++;
 	}
 	game->scene.start_draw += how_often;

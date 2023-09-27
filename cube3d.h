@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/27 12:38:59 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/09/27 12:59:30 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ typedef struct s_game
 	char		*tmp_string;
 	int			index;
 	int			all_done;
+	int			ceiling;
+	int			floor;
 	t_player	player;
 	t_img		img;
 	t_moves		moves;

@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:57:32 by vstockma          #+#    #+#             */
-/*   Updated: 2023/09/27 11:07:27 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/09/27 13:40:15 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,37 @@ static int	ft_trim_string_colors(char *str, t_game *game)
 	return (0);
 }
 
+void	ft_init_arr(int *rgb, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+		rgb[i++] = 0;
+}
+static int ft_rgb_to_int(t_game *game, char *color)
+{
+	int	i;
+	int	j;
+	int	rgb[3];
+
+	i = 0;
+	j = 0;
+	ft_init_arr(rgb, 3);
+	while (color[i] && j < 3)
+	{
+		while (ft_isdigit(color[i]))
+		{
+			rgb[j] = rgb[j] * 10;
+			rgb[j] = rgb[j] + (color[i] - '0');
+			i++;
+		}
+		i++;
+		j++;
+	}
+	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
+}
+
 int	ft_check_colors(t_game *game)
 {
 	ft_trim_string_colors(game->img.floor_color, game);
@@ -123,5 +154,7 @@ int	ft_check_colors(t_game *game)
 	free(game->img.ceiling_color);
 	game->img.ceiling_color = ft_strdup(game->tmp_string);
 	free(game->tmp_string);
+	game->floor = ft_rgb_to_int(game, game->img.floor_color);
+	game->ceiling = ft_rgb_to_int(game, game->img.ceiling_color);
 	return (0);
 }
