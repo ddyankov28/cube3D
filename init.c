@@ -6,11 +6,33 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:55:34 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/27 12:38:52 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/05 14:50:24 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
+
+void	ft_player_init(t_game *game)
+{
+	game->player.dir_x = 0;
+	game->player.dir_x = 0;
+	game->player.plane_x = 0;
+	game->player.plane_y = 0;
+	game->player.x = 0;
+	game->player.y = 0;
+	game->player.look_left = 0;
+	game->player.look_right = 0;
+
+}
+
+void	ft_moves_init(t_game *game)
+{
+	game->moves.rotation_speed = 0;
+	game->moves.walk_speed = 0;
+	game->moves.move_straight = 0;
+	game->moves.move_side = 0;
+	game->moves.rotate = 0;
+}
 
 void	ft_init(t_game *game)
 {
@@ -22,55 +44,21 @@ void	ft_init(t_game *game)
 	game->square_y = 0;
 	game->player.x = 0;
 	game->player.y = 0;
-	game->map = malloc(10000);
-	game->scene.distance = 0;
-	game->scene.line_height = 0;
-	game->scene.start_draw = 0;
-	game->scene.cos_angle = 0;
-	game->scene.line_offset = 0;
 	game->lines = 0;
-	game->img.no_texture = NULL;
-	game->img.so_texture = NULL;
-	game->img.we_texture = NULL;
-	game->img.ea_texture = NULL;
-	game->img.floor_color = NULL;
-	game->img.ceiling_color = NULL;
+	game->no_texture = NULL;
+	game->so_texture = NULL;
+	game->we_texture = NULL;
+	game->ea_texture = NULL;
+	game->floor_color = NULL;
+	game->ceiling_color = NULL;
 	game->index = 0;
 	game->all_done = 0;
+	game->img.size = 100;
+	ft_player_init(game);
+	ft_moves_init(game);
 
 }
 
-void	ft_events_init(t_game *game)
-{
-	game->moves.move_back = 0;
-	game->moves.move_forward = 0;
-	game->moves.move_left = 0;
-	game->moves.move_right = 0;
-	game->moves.rotate_left = 0;
-	game->moves.rotate_right = 0;
-}
-
-void	ft_rays_init(t_game *game)
-{
-	game->rays.ray = 0;
-	game->rays.depth_of_field = 0;
-	game->rays.map_x = 0;
-	game->rays.map_y = 0;
-	game->rays.map_pos = 0;
-	game->rays.x = 0;
-	game->rays.y = 0;
-	game->rays.angle = 0;
-	game->rays.x_offset = 0;
-	game->rays.y_offset = 0;
-	game->rays.a_tan = 0;
-	game->rays.n_tan = 0;
-	game->rays.horizont_x = 0;
-	game->rays.horizont_y = 0;
-	game->rays.vertical_x = 0;
-	game->rays.vertical_y = 0;
-	game->rays.distance_horizontal = 0;
-	game->rays.distance_vertical = 0;
-}
 
 void	ft_mlx_init(t_game *game)
 {

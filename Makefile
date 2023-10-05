@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+         #
+#    By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 16:44:47 by ddyankov          #+#    #+#              #
-#    Updated: 2023/09/27 13:19:37 by vstockma         ###   ########.fr        #
+#    Updated: 2023/10/05 14:28:39 by ddyankov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,11 @@ SRC = main.c init.c move.c render.c get_map.c player.c key_events.c rays.c \
 		rays_utils.c main_utils.c\
 		map_check.c  map_check_walls.c map_manipulation.c\
 		input_check_colors.c input_check_textures.c input_receiving.c\
-		free.c
+		free.c move_directions.c textures.c
 
 OBJ = $(patsubst %.c, obj/%.o, $(SRC))
 
-CFLAGS = -gdwarf-4 -g -MMD -MP -Ofast -march=native
+CFLAGS = -Wall -Werror -Wextra -g -MMD -MP #-Ofast -march=native
 
 MLXFLAGS  = -I ./mlx -L ./mlx -lmlx -lXext -lX11 -lm
 

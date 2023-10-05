@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_len_if_double.c                             :+:      :+:    :+:   */
+/*   ft_get_len_if_float.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	ft_get_len_if_double(char *str, int x)
+int	ft_get_len_if_float(char *str, int x)
 {
 	int	j;
 	int	i;

@@ -6,158 +6,184 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 10:28:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/27 12:48:07 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/05 15:02:14 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+# include "cube3d.h"
 
-void	ft_horizontal_lines_angle(t_game *game)
+/*static void ft_draw_wall(t_game *game, int x)
 {
-	if (game->rays.angle > PI)
+    int start;
+    int end;
+    int wall_height;
+
+    wall_height = (int)(game->screen_height / game->rays.wall_dist);
+    start = -wall_height / 2 + game->screen_height / 2;
+    if (start < 0)
+        start = 0;
+    end = wall_height / 2 + game->screen_height / 2;
+    if (end >= game->screen_height)
+        end = game->screen_height - 1;
+    while (start <= end)
+    {
+        if (game->rays.side == 0)
+            img_pix_put(game, x, start++, YELLOW);
+        else
+            img_pix_put(game, x, start++, BLACK);
+    }
+    
+}*/
+
+static void ft_calc_distance(t_game *game)
+{
+    if (game->rays.side == 1)
+        game->rays.wall_dist = game->rays.side_dist_y - game->rays.delta_dist_y;
+    else
+        game->rays.wall_dist = game->rays.side_dist_x - game->rays.delta_dist_x;
+    if (game->rays.wall_dist <= 0)
+        game->rays.wall_dist = 0.001;
+}
+
+static void ft_check_if_wall(t_game *game)
+{
+    int hit_wall;
+    int map_x;
+    int map_y;
+
+    hit_wall = 0;
+    map_x = (int)game->player.x;
+    map_y = (int)game->player.y;
+    while (!hit_wall)
+    {
+        if (game->rays.side_dist_x < game->rays.side_dist_y)
+        {
+            game->rays.side_dist_x += game->rays.delta_dist_x;
+            map_x += game->rays.step_x;
+            game->rays.side = 0;
+        }
+        else
+        {
+            game->rays.side_dist_y += game->rays.delta_dist_y;
+            map_y += game->rays.step_y;
+            game->rays.side = 1;
+        }
+        if (map_y < 0 || map_x < 0 || game->imap[map_y][map_x] == 1)
+            hit_wall = 1;
+    }
+}
+
+static void	ft_calc_steps(t_game *game)
+{
+	float	diff_x;
+    float   diff_y;
+
+	diff_x = game->player.x - (int)game->player.x;
+	diff_y = game->player.y - (int)game->player.y;
+	if (game->rays.ray_dir_x < 0)
 	{
-		game->rays.y = (((int)game->player.y / SQUARE_SIZE) * SQUARE_SIZE)
-			- 0.0001;
-		game->rays.x = (game->player.y - game->rays.y) * game->rays.a_tan
-			+ game->player.x;
-		game->rays.y_offset = -SQUARE_SIZE;
-		game->rays.x_offset = -game->rays.y_offset * game->rays.a_tan;
+		game->rays.step_x = -1;
+		game->rays.side_dist_x = diff_x * game->rays.delta_dist_x;
 	}
-	else if (game->rays.angle < PI)
+	else
 	{
-		game->rays.y = (((int)game->player.y / SQUARE_SIZE) * SQUARE_SIZE)
-			+ SQUARE_SIZE;
-		game->rays.x = (game->player.y - game->rays.y) * game->rays.a_tan
-			+ game->player.x;
-		game->rays.y_offset = SQUARE_SIZE;
-		game->rays.x_offset = -game->rays.y_offset * game->rays.a_tan;
+		game->rays.step_x = 1;
+		game->rays.side_dist_x = (1 - diff_x) * game->rays.delta_dist_x;
 	}
-	else if (game->rays.angle == 0 || game->rays.angle == PI)
+	if (game->rays.ray_dir_y < 0)
 	{
-		game->rays.x = game->player.x;
-		game->rays.y = game->player.y;
-		game->rays.depth_of_field = 1000;
+		game->rays.step_y = -1;
+		game->rays.side_dist_y = diff_y * game->rays.delta_dist_y;
+	}
+	else
+	{
+		game->rays.step_y = 1;
+		game->rays.side_dist_y = (1 - diff_y) * game->rays.delta_dist_y;
 	}
 }
 
-void	ft_horizontal_lines_init(t_game *game)
+void    ft_calculate_wall(t_game *game)
 {
-	game->rays.distance_horizontal = 1000000;
-	game->rays.horizont_x = game->player.x;
-	game->rays.horizont_y = game->player.y;
-	game->rays.depth_of_field = 0;
-	game->rays.a_tan = -1 / tan(game->rays.angle);
+    game->wall_height = (int)(game->screen_height / game->rays.wall_dist);
+    game->start = -game->wall_height / 2 + game->screen_height / 2;
+    if (game->start < 0)
+        game->start = 0;
+    if (game->rays.side)
+        game->wall_coordinate = game->player.x + game->rays.wall_dist * game->rays.ray_dir_x;
+    else
+        game->wall_coordinate = game->player.y + game->rays.wall_dist * game->rays.ray_dir_y;
+    game->wall_coordinate -= floor(game->wall_coordinate);
+    game->texture_move = 1.0 * (float)game->img.size / (float)game->wall_height;
+    game->texture_x = (int)(game->wall_coordinate * (float)game->img.size);
+    if ((game->rays.side == 0 && game->rays.ray_dir_x < 0)
+        || (game->rays.side == 1 && game->rays.ray_dir_y > 0))
+        game->texture_x = game->img.size - game->texture_x - 1;
+    game->texture_current = (game->start - game->screen_height / 2 + game->wall_height / 2) * game->texture_move;
 }
 
-void	ft_check_horizontal_lines(t_game *game)
+
+void    ft_draw_walls(t_game *game, int x, int y, int texture)
 {
-	ft_horizontal_lines_init(game);
-	ft_horizontal_lines_angle(game);
-	while (game->rays.depth_of_field < 1000)
-	{
-		game->rays.map_x = (int)game->rays.x / SQUARE_SIZE;
-		game->rays.map_y = (int)game->rays.y / SQUARE_SIZE;
-		game->rays.map_pos = game->rays.map_y * game->width + game->rays.map_x;
-		if (game->rays.map_pos > 0 && game->rays.map_pos < game->width
-			* game->height && game->imap[game->rays.map_pos] == 1)
-		{
-			game->rays.horizont_x = game->rays.x;
-			game->rays.horizont_y = game->rays.y;
-			game->rays.distance_horizontal = ft_dist(game->player.x,
-					game->player.y, game->rays.horizont_x,
-					game->rays.horizont_y);
-			game->rays.depth_of_field = 1000;
-		}
-		else
-		{
-			game->rays.x += game->rays.x_offset;
-			game->rays.y += game->rays.y_offset;
-			game->rays.depth_of_field++;
-		}
-	}
+    int color;
+
+    color = 0;
+    if (texture == 1)
+        color = (*(int *)(game->north.addr + (game->texture_y * game->north.line_len + game->texture_x * (game->north.bpp / 8))));
+    else if (texture == 2)
+        color = (*(int *)(game->south.addr + (game->texture_y * game->south.line_len + game->texture_x * (game->south.bpp / 8))));
+    else if (texture == 3)
+        color = (*(int *)(game->east.addr + (game->texture_y * game->east.line_len + game->texture_x * (game->east.bpp / 8))));
+    else if (texture == 4)
+        color = (*(int *)(game->west.addr + (game->texture_y * game->west.line_len + game->texture_x * (game->west.bpp / 8))));
+    img_pix_put(game, x, y, color);       
 }
 
-void	ft_vertical_lines_angle(t_game *game)
+void    ft_draw_textures(t_game *game, int x)
 {
-	if (game->rays.angle > P2 && game->rays.angle < P3)
-	{
-		game->rays.x = (((int)game->player.x / SQUARE_SIZE) * SQUARE_SIZE)
-			- 0.0001;
-		game->rays.y = (game->player.x - game->rays.x) * game->rays.n_tan
-			+ game->player.y;
-		game->rays.x_offset = -SQUARE_SIZE;
-		game->rays.y_offset = -game->rays.x_offset * game->rays.n_tan;
-	}
-	else if (game->rays.angle < P2 || game->rays.angle > P3)
-	{
-		game->rays.x = (((int)game->player.x / SQUARE_SIZE) * SQUARE_SIZE)
-			+ SQUARE_SIZE;
-		game->rays.y = (game->player.x - game->rays.x) * game->rays.n_tan
-			+ game->player.y;
-		game->rays.x_offset = SQUARE_SIZE;
-		game->rays.y_offset = -game->rays.x_offset * game->rays.n_tan;
-	}
-	else if (game->rays.angle == 0 || game->rays.angle == PI)
-	{
-		game->rays.x = game->player.x;
-		game->rays.y = game->player.y;
-		game->rays.depth_of_field = 1000;
-	}
+    int end;
+
+    ft_calculate_wall(game);
+    end = game->wall_height / 2  + game->screen_height / 2;
+    if (end >= game->screen_height)
+        end = game->screen_height - 1;
+    while (game->start <= end)
+    {
+        game->texture_y = (int)game->texture_current % game->img.size;
+        game->texture_current += game->texture_move;
+        if (game->rays.side == 0 && game->rays.ray_dir_x < 0)
+            ft_draw_walls(game, x, game->start,  4);
+        else if (game->rays.side == 0 && game->rays.ray_dir_x > 0)
+            ft_draw_walls(game, x, game->start,  3);
+        else if (game->rays.side == 1 && game->rays.ray_dir_y < 0)
+            ft_draw_walls(game, x, game->start,  1);
+        else if (game->rays.side == 1 && game->rays.ray_dir_y > 0)
+            ft_draw_walls(game, x, game->start,  2);
+        game->start++;
+    }
 }
 
-void	ft_vertical_lines_init(t_game *game)
+void    ft_rays(t_game *game)
 {
-	game->rays.distance_vertical = 1000000;
-	game->rays.vertical_x = game->player.x;
-	game->rays.vertical_y = game->player.y;
-	game->rays.depth_of_field = 0;
-	game->rays.n_tan = -tan(game->rays.angle);
-}
+    int x;
 
-void	ft_check_vertical_lines(t_game *game)
-{
-	ft_vertical_lines_init(game);
-	ft_vertical_lines_angle(game);
-	while (game->rays.depth_of_field < 1000)
-	{
-		game->rays.map_x = (int)game->rays.x / SQUARE_SIZE;
-		game->rays.map_y = (int)game->rays.y / SQUARE_SIZE;
-		game->rays.map_pos = game->rays.map_y * game->width + game->rays.map_x;
-		if (game->rays.map_pos > 0 && game->rays.map_pos < game->width
-			* game->height && game->imap[game->rays.map_pos] == 1)
-		{
-			game->rays.vertical_x = game->rays.x;
-			game->rays.vertical_y = game->rays.y;
-			game->rays.distance_vertical = ft_dist(game->player.x,
-					game->player.y, game->rays.vertical_x,
-					game->rays.vertical_y);
-			game->rays.depth_of_field = 1000;
-		}
-		else
-		{
-			game->rays.x += game->rays.x_offset;
-			game->rays.y += game->rays.y_offset;
-			game->rays.depth_of_field++;
-		}
-	}
-}
-
-void	rays(t_game *game)
-{
-	game->scene.start_draw = 0;
-	game->rays.angle = game->player.angle - DR * 30;
-	ft_check_ray_angle(game);
-	game->rays.ray = 0;
-	while (game->rays.ray < 60)
-	{
-		ft_check_horizontal_lines(game);
-		ft_check_vertical_lines(game);
-		ft_rays_distance(game);
-		ft_draw_line(game, game->player.x, game->player.y, game->rays.x,
-			game->rays.y, GREEN);
-		ft_draw_3d_scene(game);
-		game->rays.angle += DR;
-		ft_check_ray_angle(game);
-		game->rays.ray++;
-	}
+    x = 0;
+    while (x < game->screen_width)
+    {
+        game->player.fov = 2 * x / (float)game->screen_width - 1;
+        game->rays.ray_dir_x = game->player.dir_x + (game->player.plane_x * game->player.fov);
+        game->rays.ray_dir_y = game->player.dir_y + (game->player.plane_y * game->player.fov);
+        if (game->rays.ray_dir_x == 0)
+            game->rays.delta_dist_x = 10000000000;
+        else
+            game->rays.delta_dist_x = fabs(1.0 / game->rays.ray_dir_x);
+        if (game->rays.ray_dir_y == 0)
+            game->rays.delta_dist_y = 10000000000;
+        else
+            game->rays.delta_dist_y = fabs(1.0 / game->rays.ray_dir_y);
+        ft_calc_steps(game);
+        ft_check_if_wall(game);
+        ft_calc_distance(game);
+        ft_draw_textures(game, x);
+        x++;
+    }
 }

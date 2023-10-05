@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_check_colors.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:57:32 by vstockma          #+#    #+#             */
-/*   Updated: 2023/09/27 13:40:15 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/05 10:36:35 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	ft_init_arr(int *rgb, int size)
 	while (i < size)
 		rgb[i++] = 0;
 }
-static int ft_rgb_to_int(t_game *game, char *color)
+static int ft_rgb_to_int(char *color)
 {
 	int	i;
 	int	j;
@@ -146,15 +146,15 @@ static int ft_rgb_to_int(t_game *game, char *color)
 
 int	ft_check_colors(t_game *game)
 {
-	ft_trim_string_colors(game->img.floor_color, game);
-	free(game->img.floor_color);
-	game->img.floor_color = ft_strdup(game->tmp_string);
+	ft_trim_string_colors(game->floor_color, game);
+	free(game->floor_color);
+	game->floor_color = ft_strdup(game->tmp_string);
 	free(game->tmp_string);
-	ft_trim_string_colors(game->img.ceiling_color, game);
-	free(game->img.ceiling_color);
-	game->img.ceiling_color = ft_strdup(game->tmp_string);
+	ft_trim_string_colors(game->ceiling_color, game);
+	free(game->ceiling_color);
+	game->ceiling_color = ft_strdup(game->tmp_string);
 	free(game->tmp_string);
-	game->floor = ft_rgb_to_int(game, game->img.floor_color);
-	game->ceiling = ft_rgb_to_int(game, game->img.ceiling_color);
+	game->floor = ft_rgb_to_int(game->floor_color);
+	game->ceiling = ft_rgb_to_int(game->ceiling_color);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:43 by valentin          #+#    #+#             */
-/*   Updated: 2023/09/27 12:42:13 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/04 13:54:49 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_check_map(t_game *game)
 	int	j;
 
 	i = 0;
-	game->width = ft_strlen(game->map[i]);
+	game->width = ft_strlen(game->map[i]) - 1;
 	while (game->map[i])
 	{
 		j = 0;

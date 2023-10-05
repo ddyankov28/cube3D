@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:56:42 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/27 10:17:49 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/05 14:40:45 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,64 +20,37 @@ bool	ft_player_in_bounds(t_game *game)
 	return (true);
 }
 
-void	ft_move_forward(t_game *game)
+void	ft_move(t_game *game)
 {
-	game->player.x += game->player.delta_x / 2;
-	game->player.y += game->player.delta_y / 2;
-	if (!ft_player_in_bounds(game))
+	if (game->moves.move_straight == 1)
+		ft_straight_or_back(game, 1);
+	else if (game->moves.move_straight == 2)
+		ft_straight_or_back(game, 2);
+	if (game->moves.move_side == 1)
+		ft_left_or_right(game, 1);
+	else if (game->moves.move_side == 2)
+		ft_left_or_right(game, 2);
+	if (game->moves.rotate == 1)
+		ft_rotate(game, game->moves.rotation_speed);
+	else if (game->moves.rotate == 2)
+		ft_rotate(game, -game->moves.rotation_speed);
+}
+
+void	ft_calculate_speed(t_game *game)
+{
+	game->moves.frame_time = 1 / TARGET_FPS;
+	if (game->moves.prev_time == 0)
+		game->moves.prev_time = clock();
+	game->moves.difference = (float)(clock() - game->moves.prev_time) / CLOCKS_PER_SEC;
+	game->moves.prev_time = clock();
+	if (TARGET_FPS && game->moves.difference < game->moves.frame_time)
 	{
-		game->player.x -= game->player.delta_x / 2;
-		game->player.y -= game->player.delta_y / 2;
+		game->moves.start_time = clock();
+		game->moves.time_passed = game->moves.frame_time - game->moves.difference;
+		while ((float)(clock()- game->moves.start_time) / CLOCKS_PER_SEC < game->moves.time_passed)
+			;
+		game->moves.difference = game->moves.frame_time;
 	}
-}
-
-void	ft_move_back(t_game *game)
-{
-	game->player.x -= game->player.delta_x / 2;
-	game->player.y -= game->player.delta_y / 2;
-	if (!ft_player_in_bounds(game))
-	{
-		game->player.x += game->player.delta_x / 2;
-		game->player.y += game->player.delta_y / 2;
-	}
-}
-
-void	ft_move_right(t_game *game)
-{
-	game->player.x -= cos(game->player.angle - (PI / 2));
-	game->player.y -= sin(game->player.angle - (PI / 2));
-	if (!ft_player_in_bounds(game))
-	{
-		game->player.x += cos(game->player.angle - (PI / 2));
-		game->player.y += sin(game->player.angle - (PI / 2));
-	}
-}
-
-void	ft_move_left(t_game *game)
-{
-	game->player.x += cos(game->player.angle + (3 * PI / 2));
-	game->player.y += sin(game->player.angle + (3 * PI / 2));
-	if (!ft_player_in_bounds(game))
-	{
-		game->player.x -= cos(game->player.angle - (PI / 2));
-		game->player.y -= sin(game->player.angle - (PI / 2));
-	}
-}
-
-void	ft_rotate_right(t_game *game)
-{
-	game->player.angle += ANGLE_SPEED;
-	if (game->player.angle > 2 * PI)
-		game->player.angle -= 2 * PI;
-	game->player.delta_x = cos(game->player.angle) * 5;
-	game->player.delta_y = sin(game->player.angle) * 5;
-}
-
-void	ft_rotate_left(t_game *game)
-{
-	game->player.angle -= ANGLE_SPEED;
-	if (game->player.angle < 0)
-		game->player.angle += 2 * PI;
-	game->player.delta_x = cos(game->player.angle) * 5;
-	game->player.delta_y = sin(game->player.angle) * 5;
+	game->moves.walk_speed = game->moves.difference * WALK_SPEED_RATIO;
+	game->moves.rotation_speed = game->moves.difference * ROT_SPEED_RATIO;
 }

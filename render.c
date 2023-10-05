@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:50:45 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/27 13:48:13 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/05 11:34:27 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,6 @@ void	ft_draw_2d_map(t_game *game)
 			game->square_x += SQUARE_SIZE;
 		}
 		game->square_y += SQUARE_SIZE;
-	}
-}
-
-void	ft_draw_circle(t_game *game)
-{
-	float	i;
-	float	angle;
-	float	x1;
-	float	y1;
-
-	i = 0;
-	while (i < 360)
-	{
-		angle = i;
-		x1 = PLAYER_SIZE * cos(angle * PI / 180);
-		y1 = PLAYER_SIZE * sin(angle * PI / 180);
-		img_pix_put(game, game->player.x + x1, game->player.y + y1, GREEN);
-		i += 0.1;
 	}
 }
 
@@ -88,36 +70,6 @@ void	ft_draw_background(t_game *game)
 		while (++j < game->screen_width)
 			img_pix_put(game, j, i, color);
 	}
-}
-
-void	ft_draw_line(t_game *game, int begin_x, int begin_y, int end_x,
-		int end_y, int color)
-{
-	double	delta_x;
-	double	delta_y;
-	int		pixels;
-	double	pixel_x;
-	double	pixel_y;
-
-	delta_x = end_x - begin_x;
-	delta_y = end_y - begin_y;
-	pixels = sqrt((delta_x * delta_x) + (delta_y * delta_y));
-	delta_x /= pixels;
-	delta_y /= pixels;
-	pixel_x = begin_x;
-	pixel_y = begin_y;
-	while (pixels)
-	{
-		img_pix_put(game, pixel_x, pixel_y, color);
-		pixel_x += delta_x;
-		pixel_y += delta_y;
-		--pixels;
-	}
-}
-
-float	ft_dist(float ax, float ay, float bx, float by)
-{
-	return (sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay)));
 }
 
 void	img_pix_put(t_game *game, int x, int y, int color)

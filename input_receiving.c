@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_receiving.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:41:14 by vstockma          #+#    #+#             */
-/*   Updated: 2023/09/27 11:19:12 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/04 13:50:53 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ static int	ft_if_conditions(t_game *game, int i)
 	if (game->all_done == 6)
 		return (1);
 	if (ft_strncmp_textures(game, game->content[i], "NO", 2) == 0)
-		game->img.no_texture = ft_strdup(game->content[i]);
+		game->no_texture = ft_strdup(game->content[i]);
 	else if (ft_strncmp_textures(game, game->content[i], "SO", 2) == 0)
-		game->img.so_texture = ft_strdup(game->content[i]);
+		game->so_texture = ft_strdup(game->content[i]);
 	else if (ft_strncmp_textures(game, game->content[i], "EA", 2) == 0)
-		game->img.ea_texture = ft_strdup(game->content[i]);
+		game->ea_texture = ft_strdup(game->content[i]);
 	else if (ft_strncmp_textures(game, game->content[i], "WE", 2) == 0)
-		game->img.we_texture = ft_strdup(game->content[i]);
+		game->we_texture = ft_strdup(game->content[i]);
 	else if (ft_strncmp_colors(game, game->content[i], "F", 1) == 0)
-		game->img.floor_color = ft_strdup(game->content[i]);
+		game->floor_color = ft_strdup(game->content[i]);
 	else if (ft_strncmp_colors(game, game->content[i], "C", 1) == 0)
-		game->img.ceiling_color = ft_strdup(game->content[i]);
+		game->ceiling_color = ft_strdup(game->content[i]);
 	else if (game->content[i][0] != '\n')
 	{
 		ft_free_content(game);

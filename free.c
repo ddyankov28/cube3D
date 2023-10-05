@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:18:21 by vstockma          #+#    #+#             */
-/*   Updated: 2023/09/27 11:18:22 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/04 13:51:05 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	ft_free_textures_and_colors(t_game *game)
 {
-	if (game->img.ceiling_color != NULL)
-		free(game->img.ceiling_color);
-	if (game->img.floor_color != NULL)
-		free(game->img.floor_color);
-	if (game->img.no_texture != NULL)
-		free(game->img.no_texture);
-	if (game->img.so_texture != NULL)
-		free(game->img.so_texture);
-	if (game->img.we_texture != NULL)
-		free(game->img.we_texture);
-	if (game->img.ea_texture != NULL)
-		free(game->img.ea_texture);
+	if (game->ceiling_color != NULL)
+		free(game->ceiling_color);
+	if (game->floor_color != NULL)
+		free(game->floor_color);
+	if (game->no_texture != NULL)
+		free(game->no_texture);
+	if (game->so_texture != NULL)
+		free(game->so_texture);
+	if (game->we_texture != NULL)
+		free(game->we_texture);
+	if (game->ea_texture != NULL)
+		free(game->ea_texture);
 }
 
 void	ft_free_colors_textures_error(t_game *game, char *tmp, int i)

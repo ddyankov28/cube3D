@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 13:24:36 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/08/01 11:12:10 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/05 14:40:45 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int					ft_strlen(const char *str);
 int					ft_check_if_pipe(char **arr);
 int					ft_len_2d_arr(char **arr);
 int					ft_strcmp(const char *str1, const char *str2);
-int					ft_get_len_if_double(char *str, int x);
+int					ft_get_len_if_float(char *str, int x);
 int					ft_get_len_if_single(char *str, int x);
 int					ft_get_len_for_char(char *str, char c, int i);
 int					ft_strlcpy(char *dst, const char *src, int size);

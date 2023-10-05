@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/09/27 12:59:30 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/05 14:55:32 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <math.h>
 # include <mlx.h>
 # include <stdbool.h>
+# include <time.h>
 
 //Math
 # define PI 3.1415		//	180 degrees in radians
@@ -35,14 +36,18 @@
 # define GREY	0xA0A0A0
 # define WEISS	0xFFFFFF
 
+//moves
+# define TARGET_FPS 1000
+# define WALK_SPEED_RATIO 3
+# define ROT_SPEED_RATIO 0.8
 // 2Dmap player square attributes
-# define PLAYER_SIZE 1
+# define PLAYER_SIZE 5
 
 // 2Dmap wall or empty attributes
-# define SQUARE_SIZE 16
+# define SQUARE_SIZE 6
 
 // Angle Speed
-# define ANGLE_SPEED 0.05
+# define ANGLE_SPEED 1
 
 typedef struct s_img
 {
@@ -51,63 +56,49 @@ typedef struct s_img
 	int			bpp;
 	int			line_len;
 	int			endian;
-	char		*no_texture;
-	char		*ea_texture;
-	char		*so_texture;
-	char		*we_texture;
-	char		*floor_color;
-	char		*ceiling_color;
+	int			size;
 }				t_img;
 
 typedef struct s_player
 {
-	float		x;
-	float		y;
-	float		delta_x;
-	float		delta_y;
-	float		angle;
+	float	x;
+	float	y;
+	float	plane_x;
+	float	plane_y;
+	float	dir_x;
+	float	dir_y;
+	float	look_left;
+	float	look_right;
+	float	fov;
 }				t_player;
 
 typedef struct s_moves
 {
-	int			move_forward;
-	int			move_back;
-	int			move_left;
-	int			move_right;
-	int			rotate_left;
-	int			rotate_right;
+	float	difference;
+	float	frame_time;
+	float	time_passed;
+	float	walk_speed;
+	float	rotation_speed;
+	clock_t	start_time;
+	clock_t	prev_time;
+	int		move_straight;
+	int		move_side;
+	int		rotate;
 }				t_moves;
 
 typedef struct s_rays
 {
-	int			ray;
-	int			depth_of_field;
-	int			map_x;
-	int			map_y;
-	int			map_pos;
-	float		x;
-	float		y;
-	float		angle;
-	float		x_offset;
-	float		y_offset;
-	float		a_tan;
-	float		n_tan;
-	float		horizont_x;
-	float		horizont_y;
-	float		vertical_x;
-	float		vertical_y;
-	float		distance_horizontal;
-	float		distance_vertical;
+	float	ray_dir_x;
+	float	ray_dir_y;
+	float	delta_dist_x;
+	float	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	float	side_dist_x;
+	float	side_dist_y;
+	int		side;
+	float	wall_dist;
 }				t_rays;
-
-typedef struct s_scene
-{
-	float		distance;
-	float		line_height;
-	float		cos_angle;
-	float		line_offset;
-	int			start_draw;
-}				t_scene;
 
 typedef struct s_game
 {
@@ -118,7 +109,7 @@ typedef struct s_game
 	int			width;
 	int			height;
 	char		**map;
-	int			*imap;
+	int			**imap;
 	int			square_x;
 	int			square_y;
 	int			square_size;
@@ -128,13 +119,29 @@ typedef struct s_game
 	char		*tmp_string;
 	int			index;
 	int			all_done;
+	int			start;
+	int			wall_height;
+	float		wall_coordinate;
+	int			texture_x;
+	int			texture_y;
+	float		texture_current;
+	float		texture_move;
 	int			ceiling;
 	int			floor;
+	char		*no_texture;
+	char		*ea_texture;
+	char		*so_texture;
+	char		*we_texture;
+	char		*floor_color;
+	char		*ceiling_color;
+	t_img		north;
+	t_img		south;
+	t_img		east;
+	t_img		west;
 	t_player	player;
 	t_img		img;
 	t_moves		moves;
 	t_rays		rays;
-	t_scene		scene;
 }				t_game;
 
 void			ft_draw_circle(t_game *game);
@@ -158,7 +165,7 @@ void			ft_draw_line(t_game *game, int begin_x, int begin_y, int end_x,
 					int end_y, int color);
 void			ft_find_player_position(t_game *game);
 void			ft_player_angle(t_game *game);
-void			rays(t_game *game);
+void			ft_rays(t_game *game);
 void    		ft_draw_3d_scene(t_game *game);
 void			ft_check_ray_angle(t_game *game);
 void			ft_rays_distance(t_game *game);
@@ -167,13 +174,6 @@ void			ft_rays_distance(t_game *game);
 int				ft_key_press(int key, t_game *game);
 int				ft_key_release(int key, t_game *game);
 
-// moves
-void			ft_move_forward(t_game *game);
-void			ft_move_back(t_game *game);
-void			ft_move_left(t_game *game);
-void			ft_move_right(t_game *game);
-void			ft_rotate_right(t_game *game);
-void			ft_rotate_left(t_game *game);
 
 int				render(t_game *game);
 
@@ -215,4 +215,15 @@ void			ft_free_map_error(t_game *game, int i);
 void			ft_free_game(t_game *game);
 
 bool			ft_player_in_bounds(t_game *game);
+
+
+
+
+
+void	ft_calculate_speed(t_game *game);
+void    ft_straight_or_back(t_game *game, int direction);
+void    ft_left_or_right(t_game *game, int direction);
+void    ft_rotate(t_game *game, float angle);
+void	ft_move(t_game *game);
+void    ft_all_textures(t_game *game);
 #endif
