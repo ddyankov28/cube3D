@@ -6,58 +6,78 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:55:34 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/06 12:36:22 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/06 13:25:52 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	ft_player_init(t_game *game)
+static void	ft_player_moves_rays_init(t_game *game)
 {
-	game->player.dir_x = 0;
-	game->player.dir_x = 0;
-	game->player.plane_x = 0;
-	game->player.plane_y = 0;
 	game->player.x = 0;
 	game->player.y = 0;
+	game->player.plane_x = 0;
+	game->player.plane_y = 0;
+	game->player.dir_x = 0;
+	game->player.dir_y = 0;
 	game->player.look_left = 0;
 	game->player.look_right = 0;
-
-}
-
-void	ft_moves_init(t_game *game)
-{
+	game->player.fov = 0;
 	game->moves.move_straight = 0;
 	game->moves.move_side = 0;
 	game->moves.rotate = 0;
+	game->rays.ray_dir_x = 0;
+	game->rays.ray_dir_y = 0;
+	game->rays.delta_dist_x = 0;
+	game->rays.delta_dist_y = 0;
+	game->rays.side_dist_x = 0;
+	game->rays.side_dist_y = 0;
+	game->rays.wall_dist = 0;
+	game->rays.side = 0;
+	game->rays.step_x = 0;
+	game->rays.step_y = 0;
+}
+
+static void	ft_init_help(t_game *game)
+{
+	game->screen_width = 0;
+	game->screen_height = 0;
+	game->width = 0;
+	game->height = 0;
+	game->square_x = 0;
+	game->square_y = 0;
+	game->lines = 0;
+	game->index = 0;
+	game->all_done = 0;
+	game->start = 0;
+	game->wall_height = 0;
+	game->texture_x = 0;
+	game->texture_y = 0;
+	game->floor = 0;
+	game->ceiling = 0;
+	game->texture_current = 0;
+	game->texture_move = 0;
+	game->wall_coordinate = 0;
+	game->img.size = 0;
 }
 
 void	ft_init(t_game *game)
 {
-	game->screen_width = 0;
-	game->screen_height = 0;
-	game->height = 0;
-	game->width = 0;
-	game->square_x = 0;
-	game->square_y = 0;
-	game->player.x = 0;
-	game->player.y = 0;
-	game->lines = 0;
-	game->no_texture = NULL;
-	game->so_texture = NULL;
-	game->we_texture = NULL;
-	game->ea_texture = NULL;
-	game->floor_color = NULL;
-	game->ceiling_color = NULL;
-	game->index = 0;
-	game->all_done = 0;
-	game->img.size = 0;
-	ft_player_init(game);
-	ft_moves_init(game);
 	game->mlx = NULL;
 	game->win = NULL;
+	game->map = NULL;
+	game->file_name = NULL;
+	game->content = NULL;
+	game->tmp_string = NULL;
+	game->no_texture = NULL;
+	game->ea_texture = NULL;
+	game->so_texture = NULL;
+	game->we_texture = NULL;
+	game->floor_color = NULL;
+	game->ceiling_color = NULL;
 	game->img.mlx_img = NULL;
-
+	ft_init_help(game);
+	ft_player_moves_rays_init(game);
 }
 
 
