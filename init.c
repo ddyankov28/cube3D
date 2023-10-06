@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:55:34 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/05 14:50:24 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/05 17:23:36 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	ft_player_init(t_game *game)
 
 void	ft_moves_init(t_game *game)
 {
-	game->moves.rotation_speed = 0;
-	game->moves.walk_speed = 0;
 	game->moves.move_straight = 0;
 	game->moves.move_side = 0;
 	game->moves.rotate = 0;
@@ -53,7 +51,7 @@ void	ft_init(t_game *game)
 	game->ceiling_color = NULL;
 	game->index = 0;
 	game->all_done = 0;
-	game->img.size = 100;
+	game->img.size = 0;
 	ft_player_init(game);
 	ft_moves_init(game);
 

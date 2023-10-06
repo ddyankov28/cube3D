@@ -6,34 +6,11 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 10:28:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/05 15:02:14 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/06 09:53:40 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "cube3d.h"
-
-/*static void ft_draw_wall(t_game *game, int x)
-{
-    int start;
-    int end;
-    int wall_height;
-
-    wall_height = (int)(game->screen_height / game->rays.wall_dist);
-    start = -wall_height / 2 + game->screen_height / 2;
-    if (start < 0)
-        start = 0;
-    end = wall_height / 2 + game->screen_height / 2;
-    if (end >= game->screen_height)
-        end = game->screen_height - 1;
-    while (start <= end)
-    {
-        if (game->rays.side == 0)
-            img_pix_put(game, x, start++, YELLOW);
-        else
-            img_pix_put(game, x, start++, BLACK);
-    }
-    
-}*/
 
 static void ft_calc_distance(t_game *game)
 {
@@ -113,7 +90,7 @@ void    ft_calculate_wall(t_game *game)
     else
         game->wall_coordinate = game->player.y + game->rays.wall_dist * game->rays.ray_dir_y;
     game->wall_coordinate -= floor(game->wall_coordinate);
-    game->texture_move = 1.0 * (float)game->img.size / (float)game->wall_height;
+    game->texture_move = 1.0 *(float)game->img.size / (float)game->wall_height;
     game->texture_x = (int)(game->wall_coordinate * (float)game->img.size);
     if ((game->rays.side == 0 && game->rays.ray_dir_x < 0)
         || (game->rays.side == 1 && game->rays.ray_dir_y > 0))

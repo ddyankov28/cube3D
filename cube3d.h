@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/05 14:55:32 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/06 10:07:36 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include <math.h>
-# include <mlx.h>
-# include <stdbool.h>
-# include <time.h>
+# include <mlx.h> 
 
 //Math
 # define PI 3.1415		//	180 degrees in radians
@@ -27,27 +25,17 @@
 # define P3 4.7122		//	270 degrees in radians
 # define DR 0.0174533   // 	1 degree 	in radians
 
-//Colors
-# define GREEN	0x00FF00
-# define BLUE	0x0000FF
-# define BLACK	0x000000
-# define RED	0xFF0000
-# define YELLOW	0xFFEF00
-# define GREY	0xA0A0A0
-# define WEISS	0xFFFFFF
+// colors
+# define GREEN 0x00FF00
+# define BLUE 0x0000FF
+# define RED 0xFF0000
 
 //moves
-# define TARGET_FPS 1000
-# define WALK_SPEED_RATIO 3
-# define ROT_SPEED_RATIO 0.8
-// 2Dmap player square attributes
-# define PLAYER_SIZE 5
+# define MOVE_SPEED 0.05
+# define ROTATE_SPEED 0.01
 
-// 2Dmap wall or empty attributes
-# define SQUARE_SIZE 6
-
-// Angle Speed
-# define ANGLE_SPEED 1
+// 2Dmap wall
+# define SQUARE_SIZE 12
 
 typedef struct s_img
 {
@@ -77,10 +65,6 @@ typedef struct s_moves
 	float	difference;
 	float	frame_time;
 	float	time_passed;
-	float	walk_speed;
-	float	rotation_speed;
-	clock_t	start_time;
-	clock_t	prev_time;
 	int		move_straight;
 	int		move_side;
 	int		rotate;
@@ -214,13 +198,6 @@ void			ft_free_colors_textures_error(t_game *game, char *tmp,
 void			ft_free_map_error(t_game *game, int i);
 void			ft_free_game(t_game *game);
 
-bool			ft_player_in_bounds(t_game *game);
-
-
-
-
-
-void	ft_calculate_speed(t_game *game);
 void    ft_straight_or_back(t_game *game, int direction);
 void    ft_left_or_right(t_game *game, int direction);
 void    ft_rotate(t_game *game, float angle);

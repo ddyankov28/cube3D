@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:50:45 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/05 11:34:27 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/05 17:34:21 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	ft_draw_square(t_game *game, int color)
 			img_pix_put(game, game->square_x + x, game->square_y + y, color);
 	}
 }
+
+
 
 void	ft_draw_background(t_game *game)
 {

@@ -6,7 +6,7 @@
 #    By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 16:44:47 by ddyankov          #+#    #+#              #
-#    Updated: 2023/10/05 14:28:39 by ddyankov         ###   ########.fr        #
+#    Updated: 2023/10/05 17:16:48 by ddyankov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC = main.c init.c move.c render.c get_map.c player.c key_events.c rays.c \
 
 OBJ = $(patsubst %.c, obj/%.o, $(SRC))
 
-CFLAGS = -Wall -Werror -Wextra -g -MMD -MP #-Ofast -march=native
+CFLAGS = -Wall -Werror -Wextra -MMD -MP -O3 -march=native
 
 MLXFLAGS  = -I ./mlx -L ./mlx -lmlx -lXext -lX11 -lm
 
