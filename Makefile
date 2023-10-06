@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+         #
+#    By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 16:44:47 by ddyankov          #+#    #+#              #
-#    Updated: 2023/10/05 17:16:48 by ddyankov         ###   ########.fr        #
+#    Updated: 2023/10/06 10:45:06 by vstockma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ COLOUR_END = \033[0m
 
 NAME = cub3D
 
-SRC = main.c init.c move.c render.c get_map.c player.c key_events.c rays.c \
+SRC = main.c init.c move.c render.c player.c key_events.c rays.c \
 		rays_utils.c main_utils.c\
 		map_check.c  map_check_walls.c map_manipulation.c\
 		input_check_colors.c input_check_textures.c input_receiving.c\

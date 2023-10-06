@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/06 10:07:36 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/06 10:46:08 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 //moves
 # define MOVE_SPEED 0.05
-# define ROTATE_SPEED 0.01
+# define ROTATE_SPEED 0.035
 
 // 2Dmap wall
 # define SQUARE_SIZE 12
@@ -93,7 +93,6 @@ typedef struct s_game
 	int			width;
 	int			height;
 	char		**map;
-	int			**imap;
 	int			square_x;
 	int			square_y;
 	int			square_size;
@@ -136,9 +135,6 @@ void			ft_init(t_game *game);
 void			ft_events_init(t_game *game);
 void			ft_rays_init(t_game *game);
 void			ft_mlx_init(t_game *game);
-
-//map
-void			ft_convert_map(t_game *game);
 
 //render
 void			ft_draw_background(t_game *game);

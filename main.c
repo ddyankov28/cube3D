@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:49:32 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/06 10:02:23 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/06 10:45:54 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	main(int ac, char **av)
 	ft_init(&game);
 	game.file_name = ft_strdup(av[1]);
 	ft_handle_input(&game);
-	ft_convert_map(&game);
 	ft_find_player_position(&game);
 	ft_player_angle(&game);
 	ft_mlx_init(&game);

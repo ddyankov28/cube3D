@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 10:28:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/06 09:53:40 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/06 10:32:12 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void ft_check_if_wall(t_game *game)
             map_y += game->rays.step_y;
             game->rays.side = 1;
         }
-        if (map_y < 0 || map_x < 0 || game->imap[map_y][map_x] == 1)
+        if (map_y < 0 || map_x < 0 || game->map[map_y][map_x] == '1')
             hit_wall = 1;
     }
 }
