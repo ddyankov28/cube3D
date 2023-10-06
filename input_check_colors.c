@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:57:32 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/06 15:05:26 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/06 15:45:44 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ static int	ft_rgb_to_int(char *color)
 	i = 0;
 	j = 0;
 	ft_init_arr(rgb, 3);
-	while (color[i] && j < 3)
+	while (color && color[i] && j < 3)
 	{
 		while (ft_isdigit(color[i]))
 		{
@@ -142,6 +142,8 @@ static int	ft_rgb_to_int(char *color)
 			rgb[j] = rgb[j] + (color[i] - '0');
 			i++;
 		}
+		if (color[i] == '\0')
+			break ;
 		i++;
 		j++;
 	}

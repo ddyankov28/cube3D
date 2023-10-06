@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:41:14 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/06 15:07:20 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/06 15:43:05 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,19 @@ static int	ft_extract_content(t_game *game)
 
 static int	ft_insert_content(t_game *game)
 {
+	int	i;
+
+	i = 0;
 	game->content = ft_split(game->content_str, '\n');
 	if (!game->content)
 	{
 		free(game->content_str);
 		ft_free_malloc(game, 5, 0);
+	}
+	while (game->content[i])
+	{
+		i++;
+		game->lines++;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:43 by valentin          #+#    #+#             */
-/*   Updated: 2023/10/06 12:34:54 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/06 15:40:16 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_check_map(t_game *game)
 	while (game->map[i])
 	{
 		j = 0;
-		while (game->map[i][j] && game->map[i][j] != '\n')
+		while (game->map[i][j])
 		{
 			if (game->map[i][j] != '1' && game->map[i][j] != '0'
 				&& game->map[i][j] != 'N' && game->map[i][j] != 'E'
