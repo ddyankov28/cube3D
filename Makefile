@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+         #
+#    By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 16:44:47 by ddyankov          #+#    #+#              #
-#    Updated: 2023/10/06 14:59:08 by vstockma         ###   ########.fr        #
+#    Updated: 2023/10/06 15:51:37 by ddyankov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC = main.c init.c move.c render.c player.c key_events.c rays.c \
 
 OBJ = $(patsubst %.c, obj/%.o, $(SRC))
 
-CFLAGS = -Wall -Werror -Wextra -g -MMD -MP #-O3 -march=native
+CFLAGS = -Wall -Werror -Wextra -g -MMD -MP -O3 -march=native
 
 MLXFLAGS  = -I ./mlx -L ./mlx -lmlx -lXext -lX11 -lm
 
@@ -46,11 +46,11 @@ $(LIBFT):
 $(MLX):
 	@make -C mlx -s
 
-test:	all
-		./cub3D map.cub
+test: all
+	@./cub3D map.cub
 
-v:	all
-	valgrind --leak-check=full ./cub3D map.cub
+vtest: all
+	@valgrind --leak-check=full --show-leak-kinds=all ./cub3D map.cub
 
 clean:
 	@rm -rf obj

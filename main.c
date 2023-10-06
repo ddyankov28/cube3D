@@ -3,18 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:49:32 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/06 12:46:32 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/06 15:59:52 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-int	ft_close_x(void)
+int	ft_close_x(t_game *game)
 {
-	exit(0);
+	mlx_destroy_image(game->mlx, game->north.mlx_img);
+	mlx_destroy_image(game->mlx, game->east.mlx_img);
+	mlx_destroy_image(game->mlx, game->west.mlx_img);
+	mlx_destroy_image(game->mlx, game->south.mlx_img);
+	ft_free_game(game, "ALLGOOD");
+	return (0);
 }
 
 int	render(t_game *game)
