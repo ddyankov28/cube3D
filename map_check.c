@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:43 by valentin          #+#    #+#             */
-/*   Updated: 2023/10/04 13:54:49 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:02:46 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ int	ft_get_map(t_game *game, int i)
 	while (game->content[i] && game->content[i][0] == '\n')
 		i++;
 	game->map = malloc(sizeof(char *) * game->lines);
+	if (!game->map)
+		ft_free_malloc(game, 2, 0);
 	while (game->content[i])
 	{
 		if (game->content[i][0] == '\n')

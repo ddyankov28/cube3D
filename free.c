@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:18:21 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/04 13:51:05 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:02:15 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	ft_free_game(t_game *game)
 {
 	ft_free_2d_arr(game->map);
 	ft_free_textures_and_colors(game);
+	exit(1);
 }
 
 void	ft_free_content(t_game *game)
@@ -88,4 +89,22 @@ void	ft_free_content(t_game *game)
 	ft_free_2d_arr(game->content);
 	ft_free_textures_and_colors(game);
 	free(game->file_name);
+}
+
+void	ft_free_malloc(t_game *game, int i, int fd)
+{
+	printf("Error\nMalloc allocation failed\n");
+	if (i == 1)
+	{
+		close(fd);
+		free(game->file_name);
+	}
+	else if (i == 2 || i == 3 || i == 5)
+		ft_free_content(game);
+	else if (i == 4)
+	{
+		free(game->tmp_string);
+		ft_free_content(game);
+	}
+	exit(1);
 }

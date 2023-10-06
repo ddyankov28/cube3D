@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/06 10:46:08 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/06 11:25:17 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,7 @@ void			ft_free_colors_textures_error(t_game *game, char *tmp,
 					int i);
 void			ft_free_map_error(t_game *game, int i);
 void			ft_free_game(t_game *game);
+void	ft_free_malloc(t_game *game, int i, int fd);
 
 void    ft_straight_or_back(t_game *game, int direction);
 void    ft_left_or_right(t_game *game, int direction);

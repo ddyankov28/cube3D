@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:17:18 by valentin          #+#    #+#             */
-/*   Updated: 2023/09/27 10:39:40 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:02:34 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 int	ft_handle_input(t_game *game)
 {
 	ft_get_file_content(game);
-	ft_check_map(game);
-	ft_get_player_position(game);
 	ft_free_2d_arr(game->content);
 	free(game->file_name);
+	ft_check_map(game);
+	ft_get_player_position(game);
 	return (0);
 }
 

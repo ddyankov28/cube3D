@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_check_colors.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:57:32 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/05 10:36:35 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:02:43 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static int	ft_extansion_colors(t_game *game, int i, char *str)
 		i++;
 	j = 0;
 	number = malloc(ft_strlen(str));
+	if (!number)
+		ft_free_malloc(game, 4, 0);
 	while (str[i] && ft_isdigit(str[i]) == 1)
 	{
 		number[j++] = str[i];
@@ -99,6 +101,8 @@ static int	ft_trim_string_colors(char *str, t_game *game)
 
 	i = 0;
 	game->tmp_string = malloc(ft_strlen(str));
+	if (!game->tmp_string)
+		ft_free_malloc(game, 5, 0);
 	while (str[i] == ' ')
 		i++;
 	i += 1;
@@ -121,7 +125,7 @@ void	ft_init_arr(int *rgb, int size)
 	while (i < size)
 		rgb[i++] = 0;
 }
-static int ft_rgb_to_int(char *color)
+static int	ft_rgb_to_int(char *color)
 {
 	int	i;
 	int	j;

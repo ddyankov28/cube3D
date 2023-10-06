@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_check_textures.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:59:14 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/04 13:50:38 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:02:40 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ static char	*ft_trim_string_textures(t_game *game, char *str)
 
 	i = 0;
 	tmp = malloc(ft_strlen(str));
+	if (!tmp)
+		ft_free_malloc(game, 3, 0);
 	while (str[i] == ' ')
 		i++;
 	i += 2;

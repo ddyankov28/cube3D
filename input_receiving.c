@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_receiving.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:41:14 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/04 13:50:53 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:02:37 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,14 @@ int	ft_get_file_content(t_game *game)
 
 	fd = open(game->file_name, O_RDONLY);
 	if (fd < 0)
-	{
-		free(game->file_name);
 		ft_free_map_error(game, 6);
-	}
 	count = ft_linecount(fd);
 	fd = open(game->file_name, O_RDONLY);
+	if (fd < 0)
+		ft_free_map_error(game, 6);
 	game->content = malloc(sizeof(char *) * (count + 1));
+	if (!game->content)
+		ft_free_malloc(game, 1, fd);
 	ft_insert_content(game, fd);
 	close(fd);
 	ft_extract_content(game);
