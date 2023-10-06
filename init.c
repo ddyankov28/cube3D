@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:55:34 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/05 17:23:36 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:36:22 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ void	ft_init(t_game *game)
 	game->img.size = 0;
 	ft_player_init(game);
 	ft_moves_init(game);
+	game->mlx = NULL;
+	game->win = NULL;
+	game->img.mlx_img = NULL;
 
 }
 
@@ -61,11 +64,21 @@ void	ft_init(t_game *game)
 void	ft_mlx_init(t_game *game)
 {
 	game->mlx = mlx_init();
+	if (!game->mlx)
+		ft_free_game(game, "MLX init failed");
 	mlx_get_screen_size(game->mlx, &game->screen_width, &game->screen_height);
+	if (!game->screen_width || !game->screen_height)
+		ft_free_game(game, "Screen Size is invalid");
 	game->win = mlx_new_window(game->mlx, game->screen_width,
 			game->screen_height, "cub3D");
+	if (!game->win)
+		ft_free_game(game, "Creating new window failed");
 	game->img.mlx_img = mlx_new_image(game->mlx, game->screen_width,
 			game->screen_height);
+	if (!game->img.mlx_img)
+		ft_free_game(game, "Creating new image failed");
 	game->img.addr = mlx_get_data_addr(game->img.mlx_img, &game->img.bpp,
 			&game->img.line_len, &game->img.endian);
+	if (!game->img.addr)
+		ft_free_game(game, "Getting the img addres faield");
 }
