@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/06 12:56:23 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/06 15:06:16 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define RED 0xFF0000
 
 //moves
-# define MOVE_SPEED 0.05
+# define MOVE_SPEED 0.08
 # define ROTATE_SPEED 0.035
 
 // 2Dmap wall
@@ -97,6 +97,7 @@ typedef struct s_game
 	int			square_y;
 	int			square_size;
 	char		*file_name;
+	char		*content_str;
 	char		**content;
 	int			lines;
 	char		*tmp_string;
@@ -201,4 +202,5 @@ void    ft_left_or_right(t_game *game, int direction);
 void    ft_rotate(t_game *game, float angle);
 void	ft_move(t_game *game);
 void    ft_all_textures(t_game *game);
+char	*ft_read_file(int fd);
 #endif

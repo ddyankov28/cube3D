@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:57:32 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/06 12:50:07 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/06 15:05:26 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static int	ft_get_color(int i, char *str, t_game *game)
 	i = ft_extansion_colors(game, i, str);
 	if (i == 0)
 		return (1);
-	if (str[i] != '\n')
+	if (str[i] != '\n' && str[i] != '\0')
 		return (1);
 	game->tmp_string[game->index++] = '\0';
 	return (0);
@@ -106,7 +106,7 @@ static int	ft_trim_string_colors(char *str, t_game *game)
 	while (str[i] == ' ')
 		i++;
 	i += 1;
-	while (ft_isdigit(str[i]) == 0)
+	while (str[i] && ft_isdigit(str[i]) == 0)
 	{
 		if (str[i] != ' ')
 			ft_free_colors_textures_error(game, NULL, 2);

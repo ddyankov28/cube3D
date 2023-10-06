@@ -6,11 +6,40 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:17:18 by valentin          #+#    #+#             */
-/*   Updated: 2023/10/06 12:02:34 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/06 14:35:54 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
+
+char	*ft_read_file(int fd)
+{
+	char	*content;
+	char	*add;
+	char	*tmp;
+	int		i;
+
+	content = ft_calloc(1, 1);
+	if (!content)
+		return (0);
+	add = ft_calloc(1, 101);
+	if (!add)
+		return (free(content), NULL);
+	i = 1;
+	while (i > 0)
+	{
+		i = read(fd, add, 100);
+		if (i < 0)
+			return(free(content), free(add), NULL);
+		add[i] = '\0';
+		tmp = content;
+		content = ft_strjoin(content, add);
+		if (!content)
+			return (free(tmp), free(add), NULL);
+		free(tmp);
+	}
+	return (free(add), content);
+}
 
 int	ft_handle_input(t_game *game)
 {
@@ -33,10 +62,12 @@ int	ft_linecount(int fd)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		free(line);
+		if (line)
+			free(line);
 		count++;
 	}
-	free(line);
+	if (line)
+		free(line);
 	line = NULL;
 	close(fd);
 	return (count);

@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:41:14 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/06 12:02:37 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/06 15:07:20 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,40 +65,36 @@ static int	ft_extract_content(t_game *game)
 	return (0);
 }
 
-static int	ft_insert_content(t_game *game, int fd)
+static int	ft_insert_content(t_game *game)
 {
-	int	i;
-
-	i = 0;
-	while (1)
+	game->content = ft_split(game->content_str, '\n');
+	if (!game->content)
 	{
-		game->content[i] = get_next_line(fd);
-		if (game->content[i] == NULL)
-			break ;
-		game->lines++;
-		i++;
+		free(game->content_str);
+		ft_free_malloc(game, 5, 0);
 	}
-	game->content[i] = NULL;
 	return (0);
 }
 
 int	ft_get_file_content(t_game *game)
 {
 	int	fd;
-	int	count;
 
 	fd = open(game->file_name, O_RDONLY);
 	if (fd < 0)
 		ft_free_map_error(game, 6);
-	count = ft_linecount(fd);
-	fd = open(game->file_name, O_RDONLY);
-	if (fd < 0)
-		ft_free_map_error(game, 6);
-	game->content = malloc(sizeof(char *) * (count + 1));
-	if (!game->content)
+	game->content_str = ft_read_file(fd);
+	if (!game->content_str)
 		ft_free_malloc(game, 1, fd);
-	ft_insert_content(game, fd);
 	close(fd);
+	ft_insert_content(game);
+	free(game->content_str);
+	if (game->content[0] == NULL)
+	{
+		ft_free_2d_arr(game->content);
+		free(game->file_name);
+		exit(1);
+	}
 	ft_extract_content(game);
 	return (0);
 }
