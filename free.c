@@ -91,6 +91,20 @@ void	ft_free_content(t_game *game)
 	free(game->file_name);
 }
 
+void	ft_free_mlx_pointer(t_game *game)
+{
+	if (game->mlx)
+	{
+		if (game->img.mlx_img)
+			mlx_destroy_image(game->mlx, game->img.mlx_img);
+		if (game->win)
+			mlx_destroy_window(game->mlx, game->win);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+		game->mlx = NULL;
+	}
+}
+
 void	ft_free_malloc(t_game *game, int i, int fd)
 {
 	printf("Error\nMalloc allocation failed\n");
