@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:49:32 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/06 10:45:54 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:46:32 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	main(int ac, char **av)
 		return(printf("Error\nWrong file format!\n"),1);
 	ft_init(&game);
 	game.file_name = ft_strdup(av[1]);
+	if (!game.file_name)
+		return (1);
 	ft_handle_input(&game);
 	ft_find_player_position(&game);
 	ft_player_angle(&game);

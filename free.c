@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:18:21 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/06 12:02:15 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:51:40 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	ft_free_colors_textures_error(t_game *game, char *tmp, int i)
 
 void	ft_free_map_error(t_game *game, int i)
 {
+	if (i == 0)
+		printf("Error\nft_strdup failed\n");
 	if (i == 1)
 		printf("Error\nThere should be 1 player!\n");
 	else if (i == 2)
@@ -72,8 +74,8 @@ void	ft_free_map_error(t_game *game, int i)
 		printf("Error\nSomething is wrong in the input file!\n");
 		exit(1);
 	}
-	ft_free_content(game);
 	ft_free_2d_arr(game->map);
+	ft_free_content(game);
 	exit(1);
 }
 
@@ -89,6 +91,7 @@ void	ft_free_content(t_game *game)
 	ft_free_2d_arr(game->content);
 	ft_free_textures_and_colors(game);
 	free(game->file_name);
+	exit(1);
 }
 
 void	ft_free_mlx_pointer(t_game *game)

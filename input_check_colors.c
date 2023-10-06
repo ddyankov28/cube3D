@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:57:32 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/06 12:02:43 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:50:07 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,13 +150,27 @@ static int	ft_rgb_to_int(char *color)
 
 int	ft_check_colors(t_game *game)
 {
+	if (!game->ceiling_color || !game->floor_color)
+		ft_free_content(game);
 	ft_trim_string_colors(game->floor_color, game);
 	free(game->floor_color);
 	game->floor_color = ft_strdup(game->tmp_string);
+	if (!game->floor_color)
+	{
+		printf("Error\nft_strdup failed\n");
+		free(game->tmp_string);
+		ft_free_content(game);
+	}
 	free(game->tmp_string);
 	ft_trim_string_colors(game->ceiling_color, game);
 	free(game->ceiling_color);
 	game->ceiling_color = ft_strdup(game->tmp_string);
+	if (!game->ceiling_color)
+	{
+		printf("Error\nft_strdup failed\n");
+		free(game->tmp_string);
+		ft_free_content(game);
+	}
 	free(game->tmp_string);
 	game->floor = ft_rgb_to_int(game->floor_color);
 	game->ceiling = ft_rgb_to_int(game->ceiling_color);
