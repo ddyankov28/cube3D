@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:18:21 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/06 12:51:40 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:56:05 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,13 @@ void	ft_free_map_error(t_game *game, int i)
 	exit(1);
 }
 
-void	ft_free_game(t_game *game)
+void	ft_free_game(t_game *game, char *s)
 {
+	ft_free_mlx_pointer(game);
 	ft_free_2d_arr(game->map);
 	ft_free_textures_and_colors(game);
+	ft_putendl_fd("Error", 2);
+	ft_putendl_fd(s, 2);
 	exit(1);
 }
 
