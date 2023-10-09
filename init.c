@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:55:34 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/06 13:25:52 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/09 12:34:06 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,15 @@ void	ft_init(t_game *game)
 	game->floor_color = NULL;
 	game->ceiling_color = NULL;
 	game->img.mlx_img = NULL;
+	game->img.addr = NULL;
+	game->north.mlx_img = NULL;
+	game->south.mlx_img = NULL;
+	game->east.mlx_img = NULL;
+	game->west.mlx_img = NULL;
+	game->north.addr = NULL;
+	game->south.addr = NULL;
+	game->east.addr = NULL;
+	game->west.addr = NULL;
 	ft_init_help(game);
 	ft_player_moves_rays_init(game);
 }
