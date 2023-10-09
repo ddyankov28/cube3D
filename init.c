@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:55:34 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 12:34:06 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:45:16 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	ft_init_help(t_game *game)
 	game->texture_current = 0;
 	game->texture_move = 0;
 	game->wall_coordinate = 0;
-	game->img.size = 0;
+	game->north.size = 0;
 }
 
 void	ft_init(t_game *game)

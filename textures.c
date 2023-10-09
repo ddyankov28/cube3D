@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 11:15:10 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 12:35:29 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:46:08 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,11 @@ static void    ft_free_img_ptr(t_game *game)
         mlx_destroy_image(game->mlx, game->west.mlx_img);
     if (game->east.mlx_img)
         mlx_destroy_image(game->mlx, game->east.mlx_img);
-    if (game->north.addr)
-        free(game->north.addr);
-    if (game->south.addr)
-        free(game->south.addr);
-    if (game->west.addr)
-        free(game->west.addr);
-    if (game->east.addr)
-        free(game->east.addr);
 }
 
 static void    ft_load_texture(t_game *game, t_img *tex, char *texture_path)
 {
-    tex->mlx_img = mlx_xpm_file_to_image(game->mlx, texture_path, &game->img.size, &game->img.size);
+    tex->mlx_img = mlx_xpm_file_to_image(game->mlx, texture_path, &tex->size, &tex->size);
     if (tex->mlx_img == NULL)
     {
         ft_free_img_ptr(game);
@@ -56,4 +48,12 @@ void    ft_all_textures(t_game *game)
     ft_load_texture(game, &game->south, game->so_texture);
     ft_load_texture(game, &game->east, game->ea_texture);
     ft_load_texture(game, &game->west, game->we_texture);
+    if (game->north.size != game->south.size
+        || game->north.size != game->east.size
+        || game->north.size != game->west.size)
+    {
+        ft_free_img_ptr(game);
+        ft_free_game(game, "Img Size does not much");
+        exit(1);
+    }
 }

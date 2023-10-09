@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 10:28:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/06 10:32:12 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:44:56 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,11 @@ void    ft_calculate_wall(t_game *game)
     else
         game->wall_coordinate = game->player.y + game->rays.wall_dist * game->rays.ray_dir_y;
     game->wall_coordinate -= floor(game->wall_coordinate);
-    game->texture_move = 1.0 *(float)game->img.size / (float)game->wall_height;
-    game->texture_x = (int)(game->wall_coordinate * (float)game->img.size);
+    game->texture_move = 1.0 *(float)game->north.size / (float)game->wall_height;
+    game->texture_x = (int)(game->wall_coordinate * (float)game->north.size);
     if ((game->rays.side == 0 && game->rays.ray_dir_x < 0)
         || (game->rays.side == 1 && game->rays.ray_dir_y > 0))
-        game->texture_x = game->img.size - game->texture_x - 1;
+        game->texture_x = game->north.size - game->texture_x - 1;
     game->texture_current = (game->start - game->screen_height / 2 + game->wall_height / 2) * game->texture_move;
 }
 
@@ -125,7 +125,7 @@ void    ft_draw_textures(t_game *game, int x)
         end = game->screen_height - 1;
     while (game->start <= end)
     {
-        game->texture_y = (int)game->texture_current % game->img.size;
+        game->texture_y = (int)game->texture_current % game->north.size;
         game->texture_current += game->texture_move;
         if (game->rays.side == 0 && game->rays.ray_dir_x < 0)
             ft_draw_walls(game, x, game->start,  4);
