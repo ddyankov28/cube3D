@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:50:45 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 15:18:07 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:18:43 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
+
+static void	ft_init_vars(t_game *game)
+{
+	game->square_x = 0;
+	game->square_y = 0;
+	if (game->width > 100 || game->height > 80)
+		game->square_size = 20;
+}
 
 void	ft_draw_2d_map(t_game *game)
 {
@@ -18,11 +26,7 @@ void	ft_draw_2d_map(t_game *game)
 	int	y;
 
 	y = -1;
-	game->square_x = 0;
-	game->square_y = 0;
-
-	if (game->width > 100 || game->height > 80)
-		game->square_size = 20;
+	ft_init_vars(game);
 	while (++y < game->height)
 	{
 		game->square_x = 0;
@@ -39,9 +43,9 @@ void	ft_draw_2d_map(t_game *game)
 			game->square_x += game->square_size;
 		}
 		game->square_y += game->square_size;
-		img_pix_put(game, game->player.x * game->square_size, game->player.y
-		* game->square_size, GREEN);
 	}
+	img_pix_put(game, game->player.x * game->square_size, game->player.y
+		* game->square_size, GREEN);
 }
 
 void	ft_draw_square(t_game *game, int color)
