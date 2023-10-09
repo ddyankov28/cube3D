@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:18:21 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/06 12:56:05 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 12:01:18 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,8 @@ void	ft_free_malloc(t_game *game, int i, int fd)
 	printf("Error\nMalloc allocation failed\n");
 	if (i == 1)
 	{
-		close(fd);
+		if (fd != -1)
+			close(fd);
 		free(game->file_name);
 	}
 	else if (i == 2 || i == 3 || i == 5)

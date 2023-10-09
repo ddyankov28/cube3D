@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:17:18 by valentin          #+#    #+#             */
-/*   Updated: 2023/10/06 15:37:43 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 11:44:35 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,26 +49,4 @@ int	ft_handle_input(t_game *game)
 	ft_free_2d_arr(game->content);
 	free(game->file_name);
 	return (0);
-}
-
-int	ft_linecount(int fd)
-{
-	char	*line;
-	int		count;
-
-	count = 0;
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (line == NULL)
-			break ;
-		if (line)
-			free(line);
-		count++;
-	}
-	if (line)
-		free(line);
-	line = NULL;
-	close(fd);
-	return (count);
 }
