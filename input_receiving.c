@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:41:14 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/09 10:59:11 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 14:01:47 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,7 @@ int	ft_get_file_content(t_game *game)
 	if (!game->content_str)
 		ft_free_malloc(game, 1, fd);
 	if (close(fd) == -1)
-	{
-		free(game->content_str);
-		free(game->file_name);
-		exit(1);
-	}
+		ft_if_close_error(game);
 	ft_insert_content(game);
 	free(game->content_str);
 	if (game->content[0] == NULL)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:56:42 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 11:33:17 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:02:28 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	ft_straight_or_back(t_game *game, int direction)
 It calculates new coordinates for the player's position by rotating their
 direction vector by a specific angle (either 90 or 270 degrees).
 Then, it computes the movement speed components along the new directions,
-checks if the next position is valid on the game map, and updates the player's 
+checks if the next position is valid on the game map, and updates the player's
 coordinates accordingly if it's a valid move. */
 
 static void	ft_left_or_right(t_game *game, int direction)
@@ -69,9 +69,8 @@ static void	ft_left_or_right(t_game *game, int direction)
 	next_x = (int)(game->player.x + speed_x);
 	next_y = (int)(game->player.y + speed_y);
 	if (game->map[next_y][next_x] == '0' || game->map[next_y][next_x] == 'N'
-			|| game->map[next_y][next_x] == 'E'
-			|| game->map[next_y][next_x] == 'S'
-			|| game->map[next_y][next_x] == 'W')
+		|| game->map[next_y][next_x] == 'E' || game->map[next_y][next_x] == 'S'
+		|| game->map[next_y][next_x] == 'W')
 	{
 		game->player.x += speed_x;
 		game->player.y += speed_y;
@@ -80,7 +79,7 @@ static void	ft_left_or_right(t_game *game, int direction)
 
 /* Rotating the player's direction and plane vectors by a specified angle.
 It uses trigonometric calculations to update the direction and plane vectors,
-effectively changing the player's viewing direction and the plane that defines 
+effectively changing the player's viewing direction and the plane that defines
 their field of view. */
 
 static void	ft_rotate(t_game *game, float angle)

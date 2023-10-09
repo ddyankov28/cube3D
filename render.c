@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:50:45 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/05 17:34:21 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:05:04 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_draw_2d_map(t_game *game)
 			else if (game->map[y][x] == '0')
 				ft_draw_square(game, RED);
 			else if (game->map[y][x] == 'E' || game->map[y][x] == 'N'
-					|| game->map[y][x] == 'W' || game->map[y][x] == 'S')
+				|| game->map[y][x] == 'W' || game->map[y][x] == 'S')
 				ft_draw_square(game, RED);
 			game->square_x += SQUARE_SIZE;
 		}
@@ -54,14 +54,12 @@ void	ft_draw_square(t_game *game, int color)
 	}
 }
 
-
-
 void	ft_draw_background(t_game *game)
 {
 	int	i;
 	int	j;
 	int	color;
-	
+
 	i = -1;
 	color = game->ceiling;
 	while (++i < game->screen_height)

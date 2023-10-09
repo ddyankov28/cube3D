@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_manipulation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:53:08 by vstockma          #+#    #+#             */
-/*   Updated: 2023/09/27 12:39:43 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/09 14:15:13 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-int	ft_insert_x_right(t_game *game, int i, int j)
+static int	ft_insert_x_right(t_game *game, int i, int j)
 {
 	j -= 1;
 	while (game->map[i][j] != '1' && j >= 0)
@@ -23,7 +23,7 @@ int	ft_insert_x_right(t_game *game, int i, int j)
 	return (0);
 }
 
-int	ft_insert_x_left(t_game *game)
+static int	ft_insert_x_left(t_game *game)
 {
 	int	i;
 	int	j;
@@ -43,7 +43,7 @@ int	ft_insert_x_left(t_game *game)
 	return (0);
 }
 
-int	ft_insert_x(t_game *game, int i)
+static int	ft_insert_x(t_game *game, int i)
 {
 	int	j;
 

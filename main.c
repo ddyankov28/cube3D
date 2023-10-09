@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:49:32 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/06 15:59:52 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:02:12 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	render(t_game *game)
 	ft_rays(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.mlx_img, 0, 0);
 	ft_draw_2d_map(game);
-	img_pix_put(game, game->player.x * SQUARE_SIZE, game->player.y * SQUARE_SIZE, GREEN);
+	img_pix_put(game, game->player.x * SQUARE_SIZE, game->player.y
+		* SQUARE_SIZE, GREEN);
 	return (0);
 }
 
@@ -40,7 +41,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (printf("Not enough arguments!\n"), 1);
 	if (ft_checkfile(av[1]))
-		return(printf("Error\nWrong file format!\n"),1);
+		return (printf("Error\nWrong file format!\n"), 1);
 	ft_init(&game);
 	game.file_name = ft_strdup(av[1]);
 	if (!game.file_name)

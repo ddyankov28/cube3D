@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:59:14 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/06 12:30:01 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:01:53 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ static char	*ft_trim_string_textures(t_game *game, char *str)
 
 int	ft_check_textures(t_game *game)
 {
-	if (!game->no_texture || !game->so_texture || !game->we_texture || !game->ea_texture)
+	if (!game->no_texture || !game->so_texture || !game->we_texture
+		|| !game->ea_texture)
 		ft_free_content(game);
 	game->no_texture = ft_trim_string_textures(game, game->no_texture);
 	game->so_texture = ft_trim_string_textures(game, game->so_texture);

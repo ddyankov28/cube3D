@@ -6,38 +6,19 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:57:32 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/06 15:45:44 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 14:21:39 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-int	ft_strncmp_colors(t_game *game, char *s1, const char *s2, size_t n)
+static void	ft_check_num(t_game *game, char *number)
 {
-	unsigned char	*b;
-	unsigned char	*c;
-	size_t			a;
-	size_t			x;
-
-	b = (unsigned char *)s1;
-	c = (unsigned char *)s2;
-	x = 0;
-	while (b[x] == ' ')
-		x++;
-	a = 0;
-	while (b[x] == c[a] && b[x] != '\0' && c[a] != '\0' && a < n)
+	if (ft_atoi(number) > 255)
 	{
-		a++;
-		x++;
+		free(number);
+		ft_free_colors_textures_error(game, NULL, 3);
 	}
-	if (b[x] != ' ')
-		return (1);
-	if (a == n)
-	{
-		game->all_done++;
-		return (0);
-	}
-	return (b[x] - c[a]);
 }
 
 static int	ft_extansion_colors(t_game *game, int i, char *str)
@@ -60,18 +41,14 @@ static int	ft_extansion_colors(t_game *game, int i, char *str)
 			break ;
 	}
 	number[j++] = '\0';
-	if (ft_atoi(number) > 255)
-	{
-		free(number);
-		ft_free_colors_textures_error(game, NULL, 3);
-	}
+	ft_check_num(game, number);
 	free(number);
 	while (str[i] == ' ')
 		i++;
 	return (i);
 }
 
-static int	ft_get_color(int i, char *str, t_game *game)
+int	ft_get_color(int i, char *str, t_game *game)
 {
 	game->index = 0;
 	i = ft_extansion_colors(game, i, str);
@@ -95,36 +72,6 @@ static int	ft_get_color(int i, char *str, t_game *game)
 	return (0);
 }
 
-static int	ft_trim_string_colors(char *str, t_game *game)
-{
-	int	i;
-
-	i = 0;
-	game->tmp_string = malloc(ft_strlen(str));
-	if (!game->tmp_string)
-		ft_free_malloc(game, 5, 0);
-	while (str[i] == ' ')
-		i++;
-	i += 1;
-	while (str[i] && ft_isdigit(str[i]) == 0)
-	{
-		if (str[i] != ' ')
-			ft_free_colors_textures_error(game, NULL, 2);
-		i++;
-	}
-	if (ft_get_color(i, str, game) == 1)
-		ft_free_colors_textures_error(game, NULL, 2);
-	return (0);
-}
-
-void	ft_init_arr(int *rgb, int size)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
-		rgb[i++] = 0;
-}
 static int	ft_rgb_to_int(char *color)
 {
 	int	i;
@@ -133,7 +80,9 @@ static int	ft_rgb_to_int(char *color)
 
 	i = 0;
 	j = 0;
-	ft_init_arr(rgb, 3);
+	while (i < 3)
+		rgb[i++] = 0;
+	i = 0;
 	while (color && color[i] && j < 3)
 	{
 		while (ft_isdigit(color[i]))

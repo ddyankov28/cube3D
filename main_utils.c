@@ -6,11 +6,25 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:17:18 by valentin          #+#    #+#             */
-/*   Updated: 2023/10/09 11:44:35 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 14:04:09 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
+
+int	ft_check_after_map(t_game *game, int i)
+{
+	if (game->content[i] != NULL)
+	{
+		while (game->content[i])
+		{
+			if (game->content[i][0] != '\n' && game->content[i][0] != '\0')
+				return (1);
+			i++;
+		}
+	}
+	return (0);
+}
 
 char	*ft_read_file(int fd)
 {
@@ -30,7 +44,7 @@ char	*ft_read_file(int fd)
 	{
 		i = read(fd, add, 100);
 		if (i < 0)
-			return(free(content), free(add), NULL);
+			return (free(content), free(add), NULL);
 		add[i] = '\0';
 		tmp = content;
 		content = ft_strjoin(content, add);

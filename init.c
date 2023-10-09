@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:55:34 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 13:45:16 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:48:42 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	ft_init(t_game *game)
 	ft_init_help(game);
 	ft_player_moves_rays_init(game);
 }
-
 
 void	ft_mlx_init(t_game *game)
 {

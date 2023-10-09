@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:43 by valentin          #+#    #+#             */
-/*   Updated: 2023/10/06 15:40:16 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:57:14 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,15 +123,8 @@ int	ft_get_map(t_game *game, int i)
 		j++;
 		i++;
 	}
-	if (game->content[i] != NULL)
-	{
-		while (game->content[i])
-		{
-			if (game->content[i][0] != '\n')
-				return (1);
-			i++;
-		}
-	}
+	if (ft_check_after_map(game, i) == 1)
+		return (1);
 	game->map[j] = NULL;
 	return (0);
 }

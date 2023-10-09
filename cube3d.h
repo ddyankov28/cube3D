@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 12:04:30 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/09 14:22:00 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include <math.h>
-# include <mlx.h> 
+# include <mlx.h>
 
-//Math
-# define DEGR_180 3.1415	// 180 degrees in radians PI
-# define DEGR_90 1.5707		// 90 degrees in radians PI / 2
-# define DEGR_270 4.7122	// 270 degrees in radians 3 * PI / 2
+// Math
+# define DEGR_180 3.1415 // 180 degrees in radians PI
+# define DEGR_90 1.5707  // 90 degrees in radians PI / 2
+# define DEGR_270 4.7122 // 270 degrees in radians 3 * PI / 2
 
 // colors
 # define GREEN 0x00FF00
 # define BLUE 0x0000FF
 # define RED 0xFF0000
 
-//moves
+// moves
 # define MOVE_SPEED 0.05
 # define ROTATE_SPEED 0.035
 
@@ -48,39 +48,39 @@ typedef struct s_img
 
 typedef struct s_player
 {
-	float	x;
-	float	y;
-	float	plane_x;
-	float	plane_y;
-	float	dir_x;
-	float	dir_y;
-	float	look_left;
-	float	look_right;
-	float	fov;
+	float		x;
+	float		y;
+	float		plane_x;
+	float		plane_y;
+	float		dir_x;
+	float		dir_y;
+	float		look_left;
+	float		look_right;
+	float		fov;
 }				t_player;
 
 typedef struct s_moves
 {
-	float	difference;
-	float	frame_time;
-	float	time_passed;
-	int		move_straight;
-	int		move_side;
-	int		rotate;
+	float		difference;
+	float		frame_time;
+	float		time_passed;
+	int			move_straight;
+	int			move_side;
+	int			rotate;
 }				t_moves;
 
 typedef struct s_rays
 {
-	float	ray_dir_x;
-	float	ray_dir_y;
-	float	delta_dist_x;
-	float	delta_dist_y;
-	int		step_x;
-	int		step_y;
-	float	side_dist_x;
-	float	side_dist_y;
-	int		side;
-	float	wall_dist;
+	float		ray_dir_x;
+	float		ray_dir_y;
+	float		delta_dist_x;
+	float		delta_dist_y;
+	int			step_x;
+	int			step_y;
+	float		side_dist_x;
+	float		side_dist_y;
+	int			side;
+	float		wall_dist;
 }				t_rays;
 
 typedef struct s_game
@@ -127,76 +127,80 @@ typedef struct s_game
 	t_rays		rays;
 }				t_game;
 
-void			ft_draw_circle(t_game *game);
+// main_utils.c
+int				ft_handle_input(t_game *game);
+char			*ft_read_file(int fd);
+int				ft_check_after_map(t_game *game, int i);
 
-float			ft_dist(float ax, float ay, float bx, float by);
-//init
+// init
 void			ft_init(t_game *game);
-void			ft_events_init(t_game *game);
-void			ft_rays_init(t_game *game);
 void			ft_mlx_init(t_game *game);
 
-//render
-void			ft_draw_background(t_game *game);
+// textures.c
+void			ft_all_textures(t_game *game);
+
+// render
 void			ft_draw_2d_map(t_game *game);
 void			ft_draw_square(t_game *game, int color);
+void			ft_draw_background(t_game *game);
 void			img_pix_put(t_game *game, int x, int y, int color);
-void			ft_draw_line(t_game *game, int begin_x, int begin_y, int end_x,
-					int end_y, int color);
+
+// player.c
 void			ft_find_player_position(t_game *game);
 void			ft_player_angle(t_game *game);
-void			ft_rays(t_game *game);
-void    		ft_draw_3d_scene(t_game *game);
-void			ft_check_ray_angle(t_game *game);
-void			ft_rays_distance(t_game *game);
 
 // key events
 int				ft_key_press(int key, t_game *game);
 int				ft_key_release(int key, t_game *game);
 
+// move.c
+void			ft_move(t_game *game);
+void			ft_rays(t_game *game);
 
-int				render(t_game *game);
+// rays.c
+void			ft_calculate_wall(t_game *game);
 
-//main_utils.c
-int				ft_handle_input(t_game *game);
-int				ft_linecount(int fd);
+// rays_utils.c
+void			ft_draw_textures(t_game *game, int x);
 
-//map_check_walls.c
+// map_check.c
+int				ft_get_map(t_game *game, int i);
+int				ft_checkfile(char *str);
+int				ft_check_map(t_game *game);
+int				ft_get_player_position(t_game *game);
+
+// map_check_walls.c
 int				ft_check_walls(t_game *game);
 
-//map_check.c
-int				ft_get_player_position(t_game *game);
-int				ft_check_map(t_game *game);
-int				ft_checkfile(char *str);
-int				ft_get_map(t_game *game, int i);
-
-
-//map_manipulation.c
+// map_manipulation.c
 int				ft_change_map(t_game *game);
 
-//input_check_colors.c
+// input_check_colors.c
+int				ft_check_colors(t_game *game);
+int	ft_get_color(int i, char *str, t_game *game);
+
+// input_check_colors_utils.c
 int				ft_strncmp_colors(t_game *game, char *s1, const char *s2,
 					size_t n);
-int				ft_check_colors(t_game *game);
+int				ft_trim_string_colors(char *str, t_game *game);
 
-//input_check_textures.c
+// input_check_textures.c
 int				ft_strncmp_textures(t_game *game, char *s1, const char *s2,
 					size_t n);
 int				ft_check_textures(t_game *game);
 
-//input_receiving.c
+// input_receiving.c
 int				ft_get_file_content(t_game *game);
 
-//free.c
-void			ft_free_content(t_game *game);
-void			ft_free_colors_textures_error(t_game *game, char *tmp,
-					int i);
+// free.c
+void			ft_free_textures_and_colors(t_game *game);
+void			ft_free_colors_textures_error(t_game *game, char *tmp, int i);
 void			ft_free_map_error(t_game *game, int i);
-void			ft_free_game(t_game *game, char *s);
-void	ft_free_malloc(t_game *game, int i, int fd);
-void	ft_free_mlx_pointer(t_game *game);
+void			ft_free_content(t_game *game);
 
-void	ft_move(t_game *game);
-void    ft_all_textures(t_game *game);
-char	*ft_read_file(int fd);
+// free_and_error.c
+void			ft_if_close_error(t_game *game);
+void			ft_free_malloc(t_game *game, int i, int fd);
+void			ft_free_game(t_game *game, char *s);
+
 #endif
