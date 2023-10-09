@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 15:09:52 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:12:16 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ int				ft_change_map(t_game *game);
 
 // input_check_colors.c
 int				ft_check_colors(t_game *game);
-int	ft_get_color(int i, char *str, t_game *game);
+int				ft_get_color(int i, char *str, t_game *game);
 
 // input_check_colors_utils.c
 int				ft_strncmp_colors(t_game *game, char *s1, const char *s2,
@@ -189,6 +189,10 @@ int				ft_check_textures(t_game *game);
 
 // input_receiving.c
 int				ft_get_file_content(t_game *game);
+
+// utils.c
+int				ft_change_len(t_game *game);
+int				ft_get_width(t_game *game);
 
 // free.c
 void			ft_free_textures_and_colors(t_game *game);

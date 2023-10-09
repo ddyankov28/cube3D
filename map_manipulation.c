@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:53:08 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/09 14:15:13 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:11:17 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	ft_change_map(t_game *game)
 	int	i;
 
 	i = 0;
+	ft_change_len(game);
 	ft_insert_x_left(game);
 	while (game->map[i])
 	{

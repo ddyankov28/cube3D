@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:01:24 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/09 14:03:37 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 15:54:58 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ void	ft_free_malloc(t_game *game, int i, int fd)
 	else if (i == 4)
 	{
 		free(game->tmp_string);
+		ft_free_content(game);
+	}
+	else if (i == 6)
+	{
+		ft_free_2d_arr(game->map);
 		ft_free_content(game);
 	}
 	exit(1);

@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:43 by valentin          #+#    #+#             */
-/*   Updated: 2023/10/09 13:57:14 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:11:30 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_check_map(t_game *game)
 	int	j;
 
 	i = 0;
-	game->width = ft_strlen(game->map[i]) - 1;
+	game->width = ft_get_width(game);
 	while (game->map[i])
 	{
 		j = 0;
