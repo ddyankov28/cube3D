@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:50:45 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 16:18:43 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:06:26 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ft_init_vars(t_game *game)
 	game->square_x = 0;
 	game->square_y = 0;
 	if (game->width > 100 || game->height > 80)
-		game->square_size = 20;
+		game->square_size = 6;
 }
 
 void	ft_draw_2d_map(t_game *game)

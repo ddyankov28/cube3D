@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 10:11:38 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 13:02:03 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:14:04 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_key_press(int key, t_game *game)
 		mlx_destroy_image(game->mlx, game->east.mlx_img);
 		mlx_destroy_image(game->mlx, game->west.mlx_img);
 		mlx_destroy_image(game->mlx, game->south.mlx_img);
-		ft_free_game(game, "ALLGOOD");
+		ft_free_game(game, NULL, 0);
 	}
 	else if (key == XK_w)
 		game->moves.move_straight = 1;

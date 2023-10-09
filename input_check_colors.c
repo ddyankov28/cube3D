@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_check_colors.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:57:32 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/09 14:21:39 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:56:29 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,10 @@ static int	ft_rgb_to_int(char *color)
 int	ft_check_colors(t_game *game)
 {
 	if (!game->ceiling_color || !game->floor_color)
+	{
+		ft_putendl_fd("FT_FREE_CONTENT", 2);
 		ft_free_content(game);
+	}
 	ft_trim_string_colors(game->floor_color, game);
 	free(game->floor_color);
 	game->floor_color = ft_strdup(game->tmp_string);

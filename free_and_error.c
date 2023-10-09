@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_and_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:01:24 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/09 15:54:58 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:36:46 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,15 @@ static void	ft_free_mlx_pointer(t_game *game)
 	}
 }
 
-void	ft_free_game(t_game *game, char *s)
+void	ft_free_game(t_game *game, char *s, int i)
 {
 	ft_free_mlx_pointer(game);
 	ft_free_2d_arr(game->map);
 	ft_free_textures_and_colors(game);
-	ft_putendl_fd("Error", 2);
-	ft_putendl_fd(s, 2);
-	exit(1);
+	if (i)
+	{
+		ft_putendl_fd("Error", 2);
+		ft_putendl_fd(s, 2);
+	}
+	exit (i);
 }

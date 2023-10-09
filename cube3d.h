@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 16:12:16 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:01:14 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 # define BLACK 0x000000
 
 // moves
-# define MOVE_SPEED 0.05
-# define ROTATE_SPEED 0.035
+# define MOVE_SPEED 0.04
+# define ROTATE_SPEED 0.01
 
 typedef struct s_img
 {
@@ -203,6 +203,6 @@ void			ft_free_content(t_game *game);
 // free_and_error.c
 void			ft_if_close_error(t_game *game);
 void			ft_free_malloc(t_game *game, int i, int fd);
-void			ft_free_game(t_game *game, char *s);
+void			ft_free_game(t_game *game, char *s, int i);
 
 #endif

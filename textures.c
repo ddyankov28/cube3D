@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 11:15:10 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 13:53:53 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:14:46 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	ft_load_texture(t_game *game, t_img *tex, char *texture_path)
 	if (tex->mlx_img == NULL)
 	{
 		ft_free_img_ptr(game);
-		ft_free_game(game, "Getting texture");
+		ft_free_game(game, "Getting texture", 1);
 		exit(1);
 	}
 	tex->addr = mlx_get_data_addr(tex->mlx_img, &tex->bpp, &tex->line_len,
@@ -39,7 +39,7 @@ static void	ft_load_texture(t_game *game, t_img *tex, char *texture_path)
 	if (tex->addr == NULL)
 	{
 		ft_free_img_ptr(game);
-		ft_free_game(game, "Getting adress");
+		ft_free_game(game, "Getting adress", 1);
 		exit(1);
 	}
 }
@@ -55,7 +55,7 @@ void	ft_all_textures(t_game *game)
 		|| game->north.size != game->west.size)
 	{
 		ft_free_img_ptr(game);
-		ft_free_game(game, "Img Size does not much");
+		ft_free_game(game, "Img Size does not much", 1);
 		exit(1);
 	}
 }

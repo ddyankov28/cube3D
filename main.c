@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:49:32 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 15:00:15 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:14:19 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_close_x(t_game *game)
 	mlx_destroy_image(game->mlx, game->east.mlx_img);
 	mlx_destroy_image(game->mlx, game->west.mlx_img);
 	mlx_destroy_image(game->mlx, game->south.mlx_img);
-	ft_free_game(game, "ALLGOOD");
+	ft_free_game(game, NULL, 0);
 	return (0);
 }
 
