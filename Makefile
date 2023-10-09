@@ -6,7 +6,7 @@
 #    By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 16:44:47 by ddyankov          #+#    #+#              #
-#    Updated: 2023/10/06 15:51:37 by ddyankov         ###   ########.fr        #
+#    Updated: 2023/10/09 12:04:44 by ddyankov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC = main.c init.c move.c render.c player.c key_events.c rays.c \
 		rays_utils.c main_utils.c\
 		map_check.c  map_check_walls.c map_manipulation.c\
 		input_check_colors.c input_check_textures.c input_receiving.c\
-		free.c move_directions.c textures.c
+		free.c textures.c
 
 OBJ = $(patsubst %.c, obj/%.o, $(SRC))
 

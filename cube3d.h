@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/06 15:06:16 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 12:04:30 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@
 # include <mlx.h> 
 
 //Math
-# define PI 3.1415		//	180 degrees in radians
-# define P2 1.5707		//	90 	degrees in radians
-# define P3 4.7122		//	270 degrees in radians
-# define DR 0.0174533   // 	1 degree 	in radians
+# define DEGR_180 3.1415	// 180 degrees in radians PI
+# define DEGR_90 1.5707		// 90 degrees in radians PI / 2
+# define DEGR_270 4.7122	// 270 degrees in radians 3 * PI / 2
 
 // colors
 # define GREEN 0x00FF00
@@ -31,7 +30,7 @@
 # define RED 0xFF0000
 
 //moves
-# define MOVE_SPEED 0.08
+# define MOVE_SPEED 0.05
 # define ROTATE_SPEED 0.035
 
 // 2Dmap wall
@@ -197,9 +196,6 @@ void			ft_free_game(t_game *game, char *s);
 void	ft_free_malloc(t_game *game, int i, int fd);
 void	ft_free_mlx_pointer(t_game *game);
 
-void    ft_straight_or_back(t_game *game, int direction);
-void    ft_left_or_right(t_game *game, int direction);
-void    ft_rotate(t_game *game, float angle);
 void	ft_move(t_game *game);
 void    ft_all_textures(t_game *game);
 char	*ft_read_file(int fd);
