@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:10:50 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/09 16:11:34 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:56:54 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	ft_if_smaller_than_width(t_game *game, char *tmp, int i, int j)
 {
 	while (j < game->width)
 		tmp[j++] = 'x';
+	tmp[j] = '\0';
+	printf("%d\n", ft_strlen(tmp));
 	free(game->map[i]);
 	game->map[i] = ft_strdup(tmp);
 	if (!game->map[i])
@@ -35,7 +37,7 @@ int	ft_change_len(t_game *game)
 	while (game->map[i])
 	{
 		j = 0;
-		tmp = malloc(game->width + 1);
+		tmp = malloc(game->width + 2);
 		if (!tmp)
 			ft_free_malloc(game, 6, 0);
 		while (game->map[i][j])

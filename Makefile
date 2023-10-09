@@ -6,7 +6,7 @@
 #    By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 16:44:47 by ddyankov          #+#    #+#              #
-#    Updated: 2023/10/09 16:12:38 by vstockma         ###   ########.fr        #
+#    Updated: 2023/10/09 16:59:10 by vstockma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC = main.c init.c move.c render.c player.c key_events.c rays.c \
 
 OBJ = $(patsubst %.c, obj/%.o, $(SRC))
 
-CFLAGS = -Wall -Werror -Wextra -g -MMD -MP -O3 -march=native
+CFLAGS = -Wall -Werror -Wextra -g -MMD -MP -0fast -march=native
 
 MLXFLAGS  = -I ./mlx -L ./mlx -lmlx -lXext -lX11 -lm
 
