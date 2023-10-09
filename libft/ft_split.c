@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:08:58 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/06 15:18:19 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:04:19 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ static char	*ft_word(const char *str, char c, int i)
 	}
 	word[j] = '\0';
 	return (word);
-}	
+}
 
 static char	**finalstr(char **str, const char *s, char c)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -108,7 +108,7 @@ char	**ft_split(char const *s, char c)
 	return (finalstr(str, s, c));
 }
 
-/*int	main()
+/*int	main(void)
 {
 	const char	s[] = " Hallo56 Bro was geht ? ";
 	char	c = ' ';
