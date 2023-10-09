@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:50:45 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 13:05:04 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 15:18:07 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,27 @@ void	ft_draw_2d_map(t_game *game)
 	y = -1;
 	game->square_x = 0;
 	game->square_y = 0;
+
+	if (game->width > 100 || game->height > 80)
+		game->square_size = 20;
 	while (++y < game->height)
 	{
 		game->square_x = 0;
 		x = -1;
-		while (++x < game->width)
+		while (++x <= game->width)
 		{
 			if (game->map[y][x] == '1')
 				ft_draw_square(game, BLUE);
 			else if (game->map[y][x] == '0')
-				ft_draw_square(game, RED);
+				ft_draw_square(game, BLACK);
 			else if (game->map[y][x] == 'E' || game->map[y][x] == 'N'
 				|| game->map[y][x] == 'W' || game->map[y][x] == 'S')
-				ft_draw_square(game, RED);
-			game->square_x += SQUARE_SIZE;
+				ft_draw_square(game, BLACK);
+			game->square_x += game->square_size;
 		}
-		game->square_y += SQUARE_SIZE;
+		game->square_y += game->square_size;
+		img_pix_put(game, game->player.x * game->square_size, game->player.y
+		* game->square_size, GREEN);
 	}
 }
 
@@ -46,10 +51,10 @@ void	ft_draw_square(t_game *game, int color)
 
 	x = -1;
 	y = 0;
-	while (++x < SQUARE_SIZE)
+	while (++x < game->square_size)
 	{
 		y = -1;
-		while (++y < SQUARE_SIZE)
+		while (++y < game->square_size)
 			img_pix_put(game, game->square_x + x, game->square_y + y, color);
 	}
 }

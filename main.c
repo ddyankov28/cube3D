@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:49:32 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 13:02:12 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 15:00:15 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int	render(t_game *game)
 	ft_rays(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.mlx_img, 0, 0);
 	ft_draw_2d_map(game);
-	img_pix_put(game, game->player.x * SQUARE_SIZE, game->player.y
-		* SQUARE_SIZE, GREEN);
 	return (0);
 }
 

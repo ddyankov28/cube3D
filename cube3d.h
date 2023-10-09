@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 14:22:00 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/09 15:09:52 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,11 @@
 # define GREEN 0x00FF00
 # define BLUE 0x0000FF
 # define RED 0xFF0000
+# define BLACK 0x000000
 
 // moves
 # define MOVE_SPEED 0.05
 # define ROTATE_SPEED 0.035
-
-// 2Dmap wall
-# define SQUARE_SIZE 12
 
 typedef struct s_img
 {
