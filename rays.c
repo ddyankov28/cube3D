@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 10:28:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 14:15:35 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/10 10:54:02 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,14 @@ static void	ft_calc_steps(t_game *game)
 	}
 }
 
+/* How tall the wall should appear on the screen. The height is calculated 
+by dividing the screen's height by the distance from the player to the wall.
+This makes distant walls appear smaller, simulating perspective. Next it 
+calculates the vertical starting position on the screen where the wall
+should be drawn, ensures that the starting position is not below the screen 
+Depending on whether the ray hits a vertical or horizontal wall, gives back 
+the exact position of the wall */
+
 void	ft_calculate_wall(t_game *game)
 {
 	game->wall_height = (int)(game->screen_height / game->rays.wall_dist);
@@ -101,6 +109,12 @@ void	ft_calculate_wall(t_game *game)
 	game->texture_current = (game->start - game->screen_height / 2
 			+ game->wall_height / 2) * game->texture_move;
 }
+
+/* Iterates through the pixels on the screen horizontally, simulating the behavior of rays 
+from the player's position and direction, effectively modeling a 3D perspective. 
+For each pixel, it calculates the direction of the ray, its intersection points with walls 
+and the distances to these intersections. These calculations are then used to determine
+how textures should be drawn on the screen */
 
 void	ft_rays(t_game *game)
 {
