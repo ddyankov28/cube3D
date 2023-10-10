@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:49:32 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/10 14:51:28 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:33:47 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "cube3d_bonus.h"
 
 int	ft_close_x(t_game *game)
 {
@@ -28,6 +28,7 @@ int	render(t_game *game)
 	ft_draw_background(game);
 	ft_rays(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.mlx_img, 0, 0);
+	ft_draw_2d_map(game);
 	return (0);
 }
 
