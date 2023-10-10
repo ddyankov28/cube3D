@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:41:14 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/09 14:01:47 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/10 12:54:00 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,25 @@ static int	ft_if_conditions(t_game *game, int i)
 		game->floor_color = ft_strdup(game->content[i]);
 	else if (ft_strncmp_colors(game, game->content[i], "C", 1) == 0)
 		game->ceiling_color = ft_strdup(game->content[i]);
-	else if (game->content[i][0] != '\n')
+	else if (ft_check_line(game, i) == 1)
 	{
+		printf("Error\nSomething wrong in the elements part!\n");
 		ft_free_content(game);
-		ft_free_map_error(game, 7);
 	}
 	return (0);
 }
 
 static int	ft_check_extractions(t_game *game, int i)
 {
-	if (game->all_done == 6)
+	if (game->all_done != 6)
 	{
-		ft_check_textures(game);
-		ft_check_colors(game);
-		if (ft_get_map(game, i) == 1)
-			ft_free_map_error(game, 2);
+		printf("Error\nSomething wrong with cub file!\n");
+		ft_free_content(game);
 	}
+	ft_check_textures(game);
+	ft_check_colors(game);
+	if (ft_get_map(game, i) == 1)
+		ft_free_map_error(game, 2);
 	return (0);
 }
 
@@ -103,6 +105,7 @@ int	ft_get_file_content(t_game *game)
 	free(game->content_str);
 	if (game->content[0] == NULL)
 	{
+		printf("Error\nSomething wrong with cub file!\n");
 		ft_free_2d_arr(game->content);
 		free(game->file_name);
 		exit(1);

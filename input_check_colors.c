@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_check_colors.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:57:32 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/09 17:56:29 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/10 11:38:04 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	ft_check_num(t_game *game, char *number)
 {
-	if (ft_atoi(number) > 255)
+	if (ft_atoi(number) > 255 || !ft_strcmp(number, "\0"))
 	{
 		free(number);
 		ft_free_colors_textures_error(game, NULL, 3);
@@ -102,10 +102,7 @@ static int	ft_rgb_to_int(char *color)
 int	ft_check_colors(t_game *game)
 {
 	if (!game->ceiling_color || !game->floor_color)
-	{
-		ft_putendl_fd("FT_FREE_CONTENT", 2);
 		ft_free_content(game);
-	}
 	ft_trim_string_colors(game->floor_color, game);
 	free(game->floor_color);
 	game->floor_color = ft_strdup(game->tmp_string);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 18:01:14 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:01:33 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 // moves
 # define MOVE_SPEED 0.04
-# define ROTATE_SPEED 0.01
+# define ROTATE_SPEED 0.02
 
 typedef struct s_img
 {
@@ -193,6 +193,7 @@ int				ft_get_file_content(t_game *game);
 // utils.c
 int				ft_change_len(t_game *game);
 int				ft_get_width(t_game *game);
+int				ft_check_line(t_game *game, int i);
 
 // free.c
 void			ft_free_textures_and_colors(t_game *game);

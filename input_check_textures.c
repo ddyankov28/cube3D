@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   input_check_textures.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:59:14 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/09 17:49:42 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/10 12:54:39 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
+
+void	ft_check_for_double_tex(t_game *game, const char *tex)
+{
+	static int	no;
+	static int	so;
+	static int	we;
+	static int	ea;
+
+	if (!ft_strcmp(tex, "NO"))
+		no++;
+	else if (!ft_strcmp(tex, "SO"))
+		so++;
+	else if (!ft_strcmp(tex, "EA"))
+		ea++;
+	else if (!ft_strcmp(tex, "WE"))
+		we++;
+	if (no > 1 || so > 1 || we > 1 || ea > 1)
+	{
+		printf("Error\nTextures repeated!\n");
+		ft_free_content(game);
+	}
+}
 
 int	ft_strncmp_textures(t_game *game, char *s1, const char *s2, size_t n)
 {
@@ -35,6 +57,7 @@ int	ft_strncmp_textures(t_game *game, char *s1, const char *s2, size_t n)
 	if (a == n)
 	{
 		game->all_done++;
+		ft_check_for_double_tex(game, s2);
 		return (0);
 	}
 	return (b[x] - c[a]);
@@ -93,9 +116,8 @@ static char	*ft_trim_string_textures(t_game *game, char *str)
 int	ft_check_textures(t_game *game)
 {
 	if (!game->no_texture || !game->so_texture || !game->we_texture
-		|| !game->ea_texture
-		|| ft_strcmp(ft_strrchr(game->no_texture, '.'), ".xpm")
-		|| ft_strcmp(ft_strrchr(game->so_texture, '.'), ".xpm")
+		|| !game->ea_texture || ft_strcmp(ft_strrchr(game->no_texture, '.'),
+			".xpm") || ft_strcmp(ft_strrchr(game->so_texture, '.'), ".xpm")
 		|| ft_strcmp(ft_strrchr(game->we_texture, '.'), ".xpm")
 		|| ft_strcmp(ft_strrchr(game->ea_texture, '.'), ".xpm"))
 	{

@@ -6,11 +6,27 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 13:22:26 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/09 13:47:26 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/10 12:53:21 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
+
+static void	ft_check_for_double_col(t_game *game, const char *col)
+{
+	static int	f;
+	static int	c;
+
+	if (!ft_strcmp(col, "F"))
+		f++;
+	else if (!ft_strcmp(col, "C"))
+		c++;
+	if (f > 1 || c > 1)
+	{
+		printf("Error\nColors repeated!\n");
+		ft_free_content(game);
+	}
+}
 
 int	ft_strncmp_colors(t_game *game, char *s1, const char *s2, size_t n)
 {
@@ -35,6 +51,7 @@ int	ft_strncmp_colors(t_game *game, char *s1, const char *s2, size_t n)
 	if (a == n)
 	{
 		game->all_done++;
+		ft_check_for_double_col(game, s2);
 		return (0);
 	}
 	return (b[x] - c[a]);

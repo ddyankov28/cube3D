@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:08:58 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/09 13:04:19 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:00:38 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,15 @@ static char	*ft_word(const char *str, char c, int i)
 	return (word);
 }
 
+int	ft_empty(const char *s, int i, char c)
+{
+	while (s[i] != c && s[i])
+		i++;
+	if (s[i] == c)
+		i++;
+	return (i);
+}
+
 static char	**finalstr(char **str, const char *s, char c)
 {
 	int	i;
@@ -81,14 +90,17 @@ static char	**finalstr(char **str, const char *s, char c)
 		if (s[i] != c)
 		{
 			str[j] = ft_word(s, c, i);
+			if (!str[j++])
+				return (NULL);
+		}
+		i = ft_empty(s, i, c);
+		if (s[i] == c)
+		{
+			str[j] = ft_strdup("");
 			if (!str[j])
 				return (NULL);
 			j++;
 		}
-		while (s[i] != c && s[i])
-			i++;
-		while (s[i] == c && s[i])
-			i++;
 	}
 	str[j] = 0;
 	return (str);
@@ -102,7 +114,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	arrlen = ft_wordcount(s, c);
-	str = malloc(sizeof(char *) * (arrlen + 1));
+	str = malloc(sizeof(char *) * (arrlen + 10));
 	if (!str)
 		return (NULL);
 	return (finalstr(str, s, c));

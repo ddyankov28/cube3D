@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:53:08 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/09 16:11:17 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/10 12:11:32 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 static int	ft_insert_x_right(t_game *game, int i, int j)
 {
 	j -= 1;
-	while (game->map[i][j] != '1' && j >= 0)
+	while (game->map[i][j] && game->map[i][j] != '1' && j >= 0)
 	{
 		game->map[i][j] = 'x';
+		if (j == 0)
+			break ;
 		j--;
 	}
 	return (0);
