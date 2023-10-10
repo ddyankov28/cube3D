@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:43 by valentin          #+#    #+#             */
-/*   Updated: 2023/10/10 12:46:56 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:14:16 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	ft_get_map(t_game *game, int i)
 		ft_free_malloc(game, 2, 0);
 	while (game->content[i])
 	{
-		if (game->content[i][0] == '\0')
+		if (game->content[i][0] == '\0' || !ft_strchr(game->content[i], '1'))
 			break ;
 		game->map[j] = ft_strdup(game->content[i]);
 		if (!game->map[j])
