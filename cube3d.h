@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/10 13:01:33 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/10/10 15:11:07 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ int				ft_key_release(int key, t_game *game);
 // move.c
 void			ft_move(t_game *game);
 void			ft_rays(t_game *game);
+
 
 // rays.c
 void			ft_calculate_wall(t_game *game);

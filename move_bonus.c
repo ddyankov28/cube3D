@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:56:42 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/10 14:33:47 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/10 15:14:42 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ It uses trigonometric calculations to update the direction and plane vectors,
 effectively changing the player's viewing direction and the plane that defines
 their field of view. */
 
-static void	ft_rotate(t_game *game, float angle)
+void	ft_rotate(t_game *game, float angle)
 {
 	float	tmp_x;
 	float	tmp_y;
