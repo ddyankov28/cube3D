@@ -1,7 +1,0 @@
-empty cub, no error
-
-too many textures, no error
-
-when 3,, betwenn comas nothing
-
-when img not .xpm is than it is accepted
