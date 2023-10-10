@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:50:45 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/09 17:06:26 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:20:37 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@ static void	ft_init_vars(t_game *game)
 {
 	game->square_x = 0;
 	game->square_y = 0;
-	if (game->width > 100 || game->height > 80)
-		game->square_size = 6;
+	if (game->width > 100 || game->height > 70)
+		game->square_size = 3;
+	if (game->width > 150 || game->height > 120)
+		game->square_size = 2;
+	if (game->width > 200 || game->height > 170)
+		game->square_size = 1;
 }
 
 void	ft_draw_2d_map(t_game *game)

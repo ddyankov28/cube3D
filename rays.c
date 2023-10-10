@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 10:28:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/10 10:54:02 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:22:22 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,11 @@ void	ft_calculate_wall(t_game *game)
 			+ game->wall_height / 2) * game->texture_move;
 }
 
-/* Iterates through the pixels on the screen horizontally, simulating the behavior of rays 
-from the player's position and direction, effectively modeling a 3D perspective. 
-For each pixel, it calculates the direction of the ray, its intersection points with walls 
-and the distances to these intersections. These calculations are then used to determine
+/* Iterates through the pixels on the screen horizontally, simulating the 
+behavior of rays from the player's position and direction, effectively 
+modeling a 3D perspective. For each pixel, it calculates the direction 
+of the ray, its intersection points with walls and the distances to
+these intersections. These calculations are then used to determine
 how textures should be drawn on the screen */
 
 void	ft_rays(t_game *game)
