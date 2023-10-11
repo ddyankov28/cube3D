@@ -114,7 +114,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	arrlen = ft_wordcount(s, c);
-	str = malloc(sizeof(char *) * (arrlen + 10));
+	str = malloc(sizeof(char *) * (arrlen + 1000));
 	if (!str)
 		return (NULL);
 	return (finalstr(str, s, c));
