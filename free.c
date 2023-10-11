@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:18:21 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/11 10:15:20 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/11 13:11:19 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_free_map_error(t_game *game, int i)
 		printf("Error\nInavlid map!\n");
 	else if (i == 6)
 	{
-		ft_printf("Error opening file!\n");
+		ft_printf("Error\nOpening file!\n");
 		exit(1);
 	}
 	else if (i == 7)
