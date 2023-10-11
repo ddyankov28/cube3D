@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/10 15:11:07 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/11 09:05:11 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 # define BLACK 0x000000
 
 // moves
-# define MOVE_SPEED 0.04
-# define ROTATE_SPEED 0.02
+# define MOVE_SPEED 0.03
+# define ROTATE_SPEED 0.01
 
 typedef struct s_img
 {
@@ -154,7 +154,6 @@ int				ft_key_release(int key, t_game *game);
 // move.c
 void			ft_move(t_game *game);
 void			ft_rays(t_game *game);
-
 
 // rays.c
 void			ft_calculate_wall(t_game *game);

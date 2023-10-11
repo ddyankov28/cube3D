@@ -6,12 +6,12 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:50:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/10 15:11:47 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/11 09:04:51 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef CUBE3D_BONUS_H
+# define CUBE3D_BONUS_H
 
 # include "libft/libft.h"
 # include <X11/keysym.h>
@@ -31,8 +31,8 @@
 # define BLACK 0x000000
 
 // moves
-# define MOVE_SPEED 0.04
-# define ROTATE_SPEED 0.02
+# define MOVE_SPEED 0.03
+# define ROTATE_SPEED 0.01
 
 typedef struct s_img
 {

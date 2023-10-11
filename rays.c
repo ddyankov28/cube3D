@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 10:28:02 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/10 14:22:22 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/11 09:23:19 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ static void	ft_calc_distance(t_game *game)
 	if (game->rays.wall_dist <= 0)
 		game->rays.wall_dist = 0.001;
 }
+
+/* Searching for the the point where a wall was hit, depending if it is a side
+wall or not, after the wall was hit we stop the loop */
 
 static void	ft_check_if_wall(t_game *game)
 {
@@ -49,6 +52,11 @@ static void	ft_check_if_wall(t_game *game)
 			hit_wall = 1;
 	}
 }
+/* It determines the direction of the ray in the x-axis and sets the step 
+direction and side distance accordingly. It does the same for the y-axis,
+determining the direction of the ray, setting the step direction, and
+calculating the side distance. We are calculating how the ray moves through 
+the map and interacts with walls .*/
 
 static void	ft_calc_steps(t_game *game)
 {

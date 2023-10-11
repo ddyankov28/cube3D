@@ -6,7 +6,7 @@
 #    By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 16:44:47 by ddyankov          #+#    #+#              #
-#    Updated: 2023/10/10 14:49:35 by ddyankov         ###   ########.fr        #
+#    Updated: 2023/10/11 09:30:59 by ddyankov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ BONUS_NAME = cub3D_bonus
 SRC = main.c init.c move.c render.c player.c key_events.c rays.c \
 		rays_utils.c main_utils.c\
 		map_check.c  map_check_walls.c map_manipulation.c\
-		input_check_colors.c input_check_colors_utils.c input_check_textures.c input_receiving.c\
-		free.c free_and_error.c utils.c textures.c
+		input_check_colors.c input_check_colors_utils.c input_check_textures.c\
+		input_receiving.c free.c free_and_error.c utils.c textures.c
 
 BONUS_SRC_LIST = ${SRC:.c=_bonus.c}
 

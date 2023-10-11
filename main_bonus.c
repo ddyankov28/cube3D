@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:49:32 by ddyankov          #+#    #+#             */
-/*   Updated: 2023/10/10 15:21:15 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/11 09:03:24 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ static int	ft_mouse_rotate(int x, int y, t_game *game)
 	if (x > (game->screen_width / 1.5))
 	{
 		ft_rotate(game, -ROTATE_SPEED * 4);
-		mlx_mouse_move(game->mlx, game->win, game->screen_height / 2, game->screen_width / 2);
+		mlx_mouse_move(game->mlx, game->win, game->screen_height / 2,
+			game->screen_width / 2);
 	}
 	else if (x < (game->screen_width / 4))
 	{
 		ft_rotate(game, ROTATE_SPEED * 6);
-		mlx_mouse_move(game->mlx, game->win, game->screen_height / 2, game->screen_width / 2);
+		mlx_mouse_move(game->mlx, game->win, game->screen_height / 2,
+			game->screen_width / 2);
 	}
 	return (0);
 }
@@ -70,7 +72,8 @@ int	main(int ac, char **av)
 	mlx_hook(game.win, 3, 1L << 1, ft_key_release, &game);
 	mlx_hook(game.win, 17, 1L << 17, ft_close_x, &game);
 	mlx_hook(game.win, 6, 1L << 6, ft_mouse_rotate, &game);
-	mlx_mouse_move(game.mlx, game.win, game.screen_height/ 2, game.screen_width / 2);
+	mlx_mouse_move(game.mlx, game.win, game.screen_height / 2, game.screen_width
+		/ 2);
 	mlx_loop(game.mlx);
 	return (0);
 }
