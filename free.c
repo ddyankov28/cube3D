@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:18:21 by vstockma          #+#    #+#             */
-/*   Updated: 2023/10/09 17:54:56 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/11 10:15:20 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_free_map_error(t_game *game, int i)
 	if (i == 0)
 		printf("Error\nft_strdup failed\n");
 	if (i == 1)
-		printf("Error\nThere should be 1 player!\n");
+		printf("Error\nCheck your player!\n");
 	else if (i == 2)
 		printf("Error\nSomething wrong with the map!\n");
 	else if (i == 3)

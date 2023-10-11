@@ -6,7 +6,7 @@
 /*   By: ddyankov <ddyankov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:43 by valentin          #+#    #+#             */
-/*   Updated: 2023/10/10 14:33:47 by ddyankov         ###   ########.fr       */
+/*   Updated: 2023/10/11 09:54:29 by ddyankov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,8 @@ int	ft_get_map(t_game *game, int i)
 		j++;
 		i++;
 	}
+	game->map[j] = NULL;
 	if (ft_check_after_map(game, i) == 1)
 		return (1);
-	game->map[j] = NULL;
 	return (0);
 }
